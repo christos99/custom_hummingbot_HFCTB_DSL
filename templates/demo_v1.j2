@@ -1,0 +1,120 @@
+{% set strategy = yaml.strategy_model %}
+
+{% set decimal_used = false %}
+{% for param in strategy.strategy_parameters %}
+    {% if param.type == 'Decimal' %}
+        {% set decimal_used = true %}
+from decimal import Decimal
+    {% endif %}
+{% endfor %}
+
+
+{% if strategy.type == 'DirectionalStrategyBase' %}
+from hummingbot.strategy.directional_strategy_base import DirectionalStrategyBase
+{% elif strategy.type == 'ScriptStrategyBase' %}
+from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
+{% endif %}
+{% if strategy.position_executors %}
+from hummingbot.smart_components.executors.position_executor.data_types import CloseType, PositionConfig, PositionExecutorStatus, TrackedOrder, TrailingStop
+from hummingbot.smart_components.executors.position_executor.position_executor import PositionExecutor
+{% endif %}
+
+{% if strategy.candlestick_configuration.candles %}
+from hummingbot.data_feed.candles_feed.candles_factory import CandlesFactory, CandlesConfig
+{% endif %}
+
+{% for component in strategy.smart_components %}
+from hummingbot.smart_components.{{ component.name }} import {{ component.name }}Config, {{ component.name }}
+{% endfor %}
+
+class {{ strategy.name }}({{ strategy.type }}):
+    """
+    {{ strategy.description }}
+    """
+
+    {% for param in strategy.strategy_parameters %}
+    {% if param.type == 'Decimal' %}
+    {{ param.name }} = Decimal("{{ param.default }}")
+    {% else %}
+    {{ param.name }}: {{ param.type }} = {{ param.default }}
+    {% endif %}
+    {% endfor %}
+
+    {% if strategy.position_parameters %}
+    # Position parameters
+    {% for param in strategy.position_parameters %}
+    {{ param.name }}: {{ param.type }} = {{ param.default }}
+    {% endfor %}
+    {% endif %}
+
+    {% if strategy.candlestick_configuration.candles %}
+    # Candlestick configuration
+    candles = [
+        {% for candle in strategy.candlestick_configuration.candles %}
+        CandlesFactory.get_candle(connector="{{ candle.config.connector }}", trading_pair="{{ candle.config.trading_pair }}", interval="{{ candle.config.interval }}", max_records={{ candle.config.max_records }})
+        {% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+    {% endif %}
+
+    {% if strategy.exchanges %}
+    # Initialize exchanges
+    exchanges = {
+        {% for exchange in strategy.exchanges %}
+        "{{ exchange.name }}": {
+            "api_key": "{{ exchange.apiKey }}",
+            "api_secret": "{{ exchange.apiSecret }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    }
+    {% endif %}
+
+    {% if strategy.trading_pairs %}
+    # Initialize trading pairs
+    trading_pairs = [
+        {% for pair in strategy.trading_pairs.pairs %}
+        "{{ pair.name }}"{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+    {% endif %}
+
+    def __init__(self):
+        super().__init__()
+
+        # Initialize smart components
+        {% for component in strategy.smart_components %}
+        {{ component.name|lower }} = {{ component.name }}({{ component.config }})
+        {% endfor %}
+
+        # Define custom methods
+        {% for method in strategy.methods %}
+        def {{ method.name }}(self):
+            """
+            {{ method.description }}
+            """
+            {{ method.implementation | indent(12, False) }}
+        {% endfor %}
+
+
+        # Execution logic
+        {% if strategy.execution_logic %}
+        # Entry conditions
+        {% if strategy.execution_logic.entry_conditions %}
+            {% for condition in strategy.execution_logic.entry_conditions %}
+                # Implement entry conditions here
+            {% endfor %}
+        {% endif %}
+
+        # Exit conditions
+        {% if strategy.execution_logic.exit_conditions %}
+            {% for condition in strategy.execution_logic.exit_conditions %}
+                # Implement exit conditions here
+            {% endfor %}
+        {% endif %}
+        {% endif %}
+
+        # Additional methods and logic
+        # ...
+
+
+    # Additional methods can be added here

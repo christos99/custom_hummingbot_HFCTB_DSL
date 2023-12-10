@@ -1,0 +1,56 @@
+from decimal import Decimal
+from typing import Dict
+
+from hummingbot.core.data_type.common import OrderType
+from hummingbot.data_feed.candles_feed.candles_factory import CandlesConfig, CandlesFactory
+from hummingbot.smart_components.controllers.macd_bb_v1 import MACDBBV1, MACDBBV1Config
+from hummingbot.smart_components.strategy_frameworks.data_types import (
+    ExecutorHandlerStatus,
+    OrderLevel,
+    TripleBarrierConf,
+)
+from hummingbot.strategy.directional_strategy_base import DirectionalStrategyBase
+from hummingbot.smart_components.strategy_frameworks.directional_trading.directional_trading_executor_handler import (
+    DirectionalTradingExecutorHandler,
+)
+from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
+
+
+
+class {{ strategy.class_name }}(ScriptStrategyBase):
+    """
+    {{ strategy.description }}
+    """
+
+    # Configuration Parameters
+    exchange: str = "{{ strategy.exchange }}"
+    trading_pairs: List[str] = {{ strategy.trading_pairs }}
+    leverage: int = {{ strategy.leverage }}
+    # ... other configuration parameters ...
+
+    # Orders Configuration
+    order_amount: Decimal = Decimal("{{ strategy.order_amount }}")
+    # ... other orders configuration ...
+
+    # Triple Barrier Configuration
+    stop_loss: float = {{ strategy.stop_loss }}
+    # ... other triple barrier configuration ...
+
+    # Advanced Configurations
+    # ... advanced configuration parameters ...
+
+    def __init__(self):
+        super().__init__()
+        # Initialization logic
+        # ...
+
+    def on_stop(self):
+        # ... [on_stop logic]
+
+    def on_tick(self):
+        # on_tick method logic
+        # ...
+
+    def format_status(self):
+        # format_status method logic
+        # ...

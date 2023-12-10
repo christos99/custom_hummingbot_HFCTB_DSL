@@ -1,0 +1,98 @@
+"""
+    {{ strategy.description }}
+    This {{ strategy.type }} strategy is generated with hbot-strategy-dsl.
+    Author: {{ strategy.author }}
+"""
+
+from decimal import Decimal
+from typing import Dict
+
+from hummingbot.connector.connector_base import ConnectorBase, TradeType
+from hummingbot.core.data_type.common import OrderType
+from hummingbot.data_feed.candles_feed.candles_factory import CandlesConfig
+from hummingbot.smart_components.controllers.macd_bb_v1 import MACDBBV1, MACDBBV1Config
+from hummingbot.smart_components.strategy_frameworks.data_types import (
+    ExecutorHandlerStatus,
+    OrderLevel,
+    TripleBarrierConf,
+)
+from hummingbot.smart_components.strategy_frameworks.directional_trading.directional_trading_executor_handler import (
+    DirectionalTradingExecutorHandler,
+)
+from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
+
+
+logger = logging.getLogger(__name__)
+
+
+class {{ strategy.name }}Strategy(ScriptStrategyBase):
+    """{{ strategy.description }}"""
+
+{% for param in strategy.parameters %}
+    {%- if param.name != 'custom_price_logic' %}
+        {%- if param.type == 'str' %}
+{{ param.name }}: str = "{{ param.default }}"  # {{ param.description }}
+        {%- elif param.type == 'decimal' %}
+{{ param.name }}: float = {{ param.default }}  # {{ param.description }}
+        {%- else %}
+{{ param.name }}: {{ param.type }} = {{ param.default }}  # {{ param.description }}
+        {%- endif %}
+    {%- endif %}
+{%- endfor %}
+
+    def __init__(self):
+        """
+            Initialize the strategy.
+
+            This method sets up the initial state of the strategy upon instantiation.
+            It initializes the markets that the strategy will interact with.
+
+            The `super().__init__()` call ensures that the initialization logic of the
+            base class (ScriptStrategyBase or any other relevant base class) is also executed,
+            setting up essential components and configurations.
+        """
+        super().__init__()
+        self.markets = {
+            {% for market in strategy.markets -%}
+            "{{ market.connector }}": {{ market.pairs }},
+            {% endfor -%}
+
+        }
+    {% set custom_price_logic_found = false -%}
+    {% set custom_price_logic_value = '' %}
+    {% for param in strategy.parameters -%}
+        {%- if param.name == 'custom_price_logic' %}
+            {% set custom_price_logic_found = true %}
+            {% set custom_price_logic_value = param.default %}
+        {%- endif %}
+    {%- endfor %}
+
+    {%- if custom_price_logic_found %}
+    def calculate_custom_price(self):
+        # Custom price calculation logic as defined in strategy parameters
+        {{ custom_price_logic_value }}
+    {% endif -%}
+
+
+
+    def on_tick(self):
+        """Main strategy operation executed periodically."""
+        proposal = self._create_order_proposal()
+        if proposal:
+            self._execute_order_proposal(proposal)
+
+    def _create_order_proposal(self) -> List[OrderCandidate]:
+        """Generates order proposals based on strategy logic."""
+        # Custom logic here...
+        return []
+
+    def _execute_order_proposal(self, proposal: List[OrderCandidate]):
+        """Executes the given order proposal."""
+        # Custom logic here...
+
+    def did_fill_order(self, event: OrderFilledEvent):
+        """Handles order filled events."""
+        order_info = f"{event.trade_type.name} order of {event.amount} {event.trading_pair} at {event.price}"
+        logger.info(f"Filled: {order_info}")
+        self.notify_hb_app_with_timestamp(f"Filled: {order_info}")
+
