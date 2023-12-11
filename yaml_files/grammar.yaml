@@ -1,4 +1,4 @@
-strategy_model:
+ strategy_model:
   name: "<strategy_name>"
   version: "<version>"
   type: "<Strategy | Script>"

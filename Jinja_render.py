@@ -1,26 +1,27 @@
 import os
 import yaml
-from jinja2 import Environment, FileSystemLoader
+import jinja2
 
 try:
     # Load YAML file
-    yaml_file_path = '/path/to/RSI_EthUsdt_Strategy.yaml'
+    yaml_file_path = '/Users/christos/custom_hummingbot_DSL/yaml_files/dynamic_indicator.yaml'
     with open(yaml_file_path, 'r') as file:
         yaml_data = yaml.safe_load(file)
 
     # Load Jinja2 template
-    template_dir = '/path/to/templates'
-    env = Environment(loader=FileSystemLoader(template_dir))
-    template = env.get_template('demo_v1.j2')
+    template_dir = '/Users/christos/custom_hummingbot_DSL/templates'
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir))
+    template = env.get_template('base_template.j2')
 
     # Render the template with YAML data
-    rendered_script = template.render(yaml=yaml_data)
+    rendered_script = template.render(**yaml_data)
+    
 
     # Write the rendered script to a Python file
-    output_file_path = '/path/to/output/RSI_EthUsdt_Strategy.py'
+    output_file_path = '/Users/christos/custom_hummingbot_DSL/output_strategies/dynamic_indicator.py'
     with open(output_file_path, 'w') as file:
         file.write(rendered_script)
 
     print(f"Strategy script successfully written to {output_file_path}")
 except Exception as e:
-    print(f"An error occurred: {e}")
+    print(f"An error occurred: {e}")    

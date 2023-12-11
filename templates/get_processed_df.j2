@@ -1,26 +1,26 @@
-# Function to process indicators
-def process_indicators(self):
-    candles_df = self.candles[0].candles_df.copy()
+    # Function to process indicators
+    def get_processed_df(self):
+        candles_df = self.candles[0].candles_df.copy()
 
-    {% for indicator in indicators %}
-    if "{{ indicator.name }}" == "RSI":
+        {% for indicator in indicators %}
+        {% if indicator.name == "RSI" %}
         # Calculate RSI
         candles_df["RSI_{{ indicator.length }}"] = ta.rsi(candles_df["close"], length={{ indicator.length }})
-    elif "{{ indicator.name }}" == "MACD":
+        {% elif indicator.name == "MACD" %}
         # Calculate MACD
         macd = ta.macd(candles_df["close"], fast={{ indicator.fast_length }}, slow={{ indicator.slow_length }}, signal={{ indicator.signal_smoothing }})
         candles_df = candles_df.join(macd)
-    elif "{{ indicator.name }}" == "Bollinger Bands":
+        {% elif indicator.name == "Bollinger Bands" %}
         # Calculate Bollinger Bands
         bollinger = ta.bbands(candles_df["close"], length={{ indicator.length }}, std={{ indicator.std_dev }})
         candles_df = candles_df.join(bollinger)
-    elif "{{ indicator.name }}" == "SMA":
+        {% elif indicator.name == "SMA" %}
         # Calculate SMA
         candles_df["SMA_{{ indicator.length }}"] = ta.sma(candles_df["close"], length={{ indicator.length }})
-    elif "{{ indicator.name }}" == "EMA":
+        {% elif indicator.name == "EMA" %}
         # Calculate EMA
         candles_df["EMA_{{ indicator.length }}"] = ta.ema(candles_df["close"], length={{ indicator.length }})
-    # Add more indicators as needed
-    {% endfor %}
+        {% endif %}
+        {% endfor %}
 
-    return candles_df
+        return candles_df

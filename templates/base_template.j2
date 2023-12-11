@@ -12,19 +12,20 @@ class {{ strategy_info.name }}({{ strategy_info.base_class }}):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Initialize market parameters
-        {% include 'market_config.jinja' %}
-
+            {% include 'market_config.j2' %}
         # Initialize trade parameters
-        {% include 'trade_parameters.jinja' %}
-
+            {% include 'trade_parameters.j2' %}
         # Initialize indicator parameters 
         {% include 'setup_indicators.j2' %}
-
         # Other initializations, if any
-        ...
+        
+    # Indicator process logic
+        {% include 'get_processed_df.j2' %}
 
     # Signal generation logic
-    {% include 'signal_generation.jinja' %}
+    {% include 'signal_generation.j2' %}
+
+
 
     # Trade execution logic
     def execute_trade(self, signal):
