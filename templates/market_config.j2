@@ -1,0 +1,7 @@
+# Market configuration
+trading_pair: str = "{{ market_config.trading_pair }}"
+exchange: str = "{{ market_config.exchange }}"
+api_key = "{{ market_config.api_key }}"
+api_secret = "{{ market_config.api_secret }}"
+order_amount_usd = Decimal("{{ trade_parameters.order_amount_usd }}")
+leverage = {{ trade_parameters.leverage }}

@@ -1,0 +1,40 @@
+# Import necessary modules
+import pandas as pd
+from decimal import Decimal
+from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
+from hummingbot.core.data_type.common import OrderType, PositionSide
+
+# Strategy Class Definition
+class {{ strategy_info.name }}(ScriptStrategyBase):
+    # Strategy Metadata
+    strategy_name = "{{ strategy_info.name }}"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Initialize strategy parameters
+        {% include 'market_config.jinja' %}
+        {% include 'trade_parameters.jinja' %}
+
+        # Initialize indicators
+        self.setup_indicators()
+
+        # Other initializations, if any
+        ...
+
+    def setup_indicators(self):
+        # Indicators setup
+        {% for indicator in indicators %}
+        {% include 'indicators/' + indicator.name|lower + '.jinja' %}
+        {% endfor %}
+
+    # Signal generation logic
+    {% include 'signal_generation.jinja' %}
+
+    # Trade execution logic
+    def execute_trade(self, signal):
+        # This method will use signal generated from `get_signal` to execute trades
+        # Trade execution logic goes here
+        ...
+
+    # Additional methods and utilities
+    ...

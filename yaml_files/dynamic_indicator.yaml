@@ -1,0 +1,26 @@
+strategy_info:
+  name: "DynamicIndicatorStrategy"
+
+market_config:
+  exchange: "binance"
+  trading_pair: "BTC-USDT"
+
+trade_parameters:
+  order_amount: 100
+  leverage: 10
+  stop_loss: 0.01
+  take_profit: 0.02
+
+indicators:
+  - name: "RSI"
+    length: 14
+    overbought_threshold: 70
+    oversold_threshold: 30
+  - name: "MACD"
+    fast_length: 12
+    slow_length: 26
+    signal_smoothing: 9
+
+signal_conditions:
+  buy_condition: "self.RSI < 30 or self.MACD_cross_up"
+  sell_condition: "self.RSI > 70 or self.MACD_cross_down"
