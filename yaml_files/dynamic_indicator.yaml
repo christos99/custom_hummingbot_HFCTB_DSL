@@ -1,5 +1,6 @@
 strategy_info:
   name: "DynamicIndicatorStrategy"
+  base_class: "DirectionalStrategyBase" 
 
 market_config:
   exchange: "binance"
