@@ -33,11 +33,11 @@ class RSI_Strategy(DirectionalStrategyBase):
     rsi_oversold = 30
     
         
-    
+
     # Function to process indicators
     def get_processed_df(self):
 
-        candles_df = self.candles[0].candles_df.copy()
+        candles_df = self.candles[0].candles_df
 
         # Calculate RSI
         candles_df["RSI_7"] = ta.rsi(candles_df["close"], length=7)

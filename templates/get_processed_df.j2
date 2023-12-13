@@ -1,9 +1,9 @@
     
-    
+
     # Function to process indicators
     def get_processed_df(self):
 
-        candles_df = self.candles[0].candles_df.copy()
+        candles_df = self.candles[0].candles_df
 
         {%- for indicator in indicators %}
         {%- if indicator.name == "RSI" %}
