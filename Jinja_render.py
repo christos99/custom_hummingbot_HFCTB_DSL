@@ -18,7 +18,7 @@ try:
     
 
     # Write the rendered script to a Python file
-    output_file_path = '/Users/christos/custom_hummingbot_DSL/output_strategies/dynamic_indicator.py'
+    output_file_path = '/Users/christos/custom_hummingbot_DSL/output_strategies/directional_strategy_rsi.py'
     with open(output_file_path, 'w') as file:
         file.write(rendered_script)
 

@@ -1,5 +1,4 @@
 # Import necessary modules
-import pandas as pd
 from decimal import Decimal
 from hummingbot.data_feed.candles_feed.candles_factory import CandlesConfig, CandlesFactory
 from hummingbot.strategy.directional_strategy_base import DirectionalStrategyBase
