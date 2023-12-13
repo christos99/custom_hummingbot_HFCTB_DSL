@@ -1,34 +1,36 @@
+    
+    
     # Configure the parameters for the position
-    {% if trade_parameters.stop_loss %}
+    {%- if trade_parameters.stop_loss %}
     stop_loss: float = {{ trade_parameters.stop_loss }}
-    {% endif %}
-    {% if trade_parameters.take_profit %}
+    {%- endif %}
+    {%- if trade_parameters.take_profit %}
     take_profit: float = {{ trade_parameters.take_profit }}
-    {% endif %}
-    {% if trade_parameters.time_limit %}
+    {%-endif %}
+    {%- if trade_parameters.time_limit %}
     time_limit: int = {{ trade_parameters.time_limit }}
-    {% endif %}
-    {% if trade_parameters.open_order_type %}
+    {%-endif %}
+    {%- if trade_parameters.open_order_type %}
     open_order_type = OrderType.{{ trade_parameters.open_order_type }}
-    {% endif %}
-    {% if trade_parameters.open_order_slippage_buffer %}
+    {%- endif %}
+    {%- if trade_parameters.open_order_slippage_buffer %}
     open_order_slippage_buffer: float = {{ trade_parameters.open_order_slippage_buffer }}
     {% endif %}
-    {% if trade_parameters.take_profit_order_type %}
+    {%- if trade_parameters.take_profit_order_type %}
     take_profit_order_type: OrderType = OrderType.{{ trade_parameters.take_profit_order_type }}
-    {% endif %}
-    {% if trade_parameters.stop_loss_order_type %}
+    {%- endif %}
+    {%- if trade_parameters.stop_loss_order_type %}
     stop_loss_order_type: OrderType = OrderType.{{ trade_parameters.stop_loss_order_type }}
-    {% endif %}
-    {% if trade_parameters.time_limit_order_type %}
+    {%- endif %}
+    {%- if trade_parameters.time_limit_order_type %}
     time_limit_order_type: OrderType = OrderType.{{ trade_parameters.time_limit_order_type }}
-    {% endif %}
-    {% if trade_parameters.trailing_stop_activation_delta %}
+    {%- endif %}
+    {%- if trade_parameters.trailing_stop_activation_delta %}
     trailing_stop_activation_delta = {{ trade_parameters.trailing_stop_activation_delta }}
-    {% endif %}
-    {% if trade_parameters.trailing_stop_trailing_delta %}
+    {%- endif %}
+    {%- if trade_parameters.trailing_stop_trailing_delta %}
     trailing_stop_trailing_delta = {{ trade_parameters.trailing_stop_trailing_delta }}
-    {% endif %}
-    {% if trade_parameters.cooldown_after_execution %}
+    {%-endif %}
+    {%- if trade_parameters.cooldown_after_execution %}
     cooldown_after_execution = {{ trade_parameters.cooldown_after_execution }}
-    {% endif %}
+    {%- endif %}

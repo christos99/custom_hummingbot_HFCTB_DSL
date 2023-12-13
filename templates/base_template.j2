@@ -1,37 +1,34 @@
 # Import necessary modules
-import pandas as pd
 from decimal import Decimal
+{%- if candlestick_configuration %}
+from hummingbot.data_feed.candles_feed.candles_factory import CandlesConfig, CandlesFactory
+{% endif %}
+{%- if strategy_info.base_class == 'DirectionalStrategyBase' -%}
+from hummingbot.strategy.directional_strategy_base import DirectionalStrategyBase
+{%- elif strategy_info.base_class == 'ScriptStrategyBase' -%}
 from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
-from hummingbot.core.data_type.common import OrderType, PositionSide
+{%- endif %}
 
 # Strategy Class Definition
 class {{ strategy_info.name }}({{ strategy_info.base_class }}):
     # Strategy Metadata
-    strategy_name = "{{ strategy_info.name }}"
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Initialize market parameters
-            {% include 'market_config.j2' %}
-        # Initialize trade parameters
-            {% include 'trade_parameters.j2' %}
-        # Initialize indicator parameters 
-        {% include 'setup_indicators.j2' %}
-        # Other initializations, if any
+    strategy_name: str = "{{ strategy_info.name }}"
+    {#- Initialize market parameters -#}
+    {%- include 'market_config.j2' %}
         
-    # Indicator process logic
-        {% include 'get_processed_df.j2' %}
+    {#- Initialize trade parameters -#}
+    {% include 'trade_parameters.j2' %}
 
-    # Signal generation logic
+    {#- Initialize candlestick configuration -#}
+    {% include 'candlestick_config.j2' %}
+
+    {#- Initialize indicator parameters -#}
+    {% include 'setup_indicators.j2' %}
+        
+    {#- Other initializations, if any -#}
+
+    {#- Indicator process logic -#}
+    {% include 'get_processed_df.j2' %}
+
+    {#- Signal generation logic -#}
     {% include 'signal_generation.j2' %}
-
-
-
-    # Trade execution logic
-    def execute_trade(self, signal):
-        # This method will use signal generated from `get_signal` to execute trades
-        # Trade execution logic goes here
-        ...
-
-    # Additional methods and utilities
-    ...

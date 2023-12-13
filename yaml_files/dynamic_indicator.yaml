@@ -1,41 +1,41 @@
 strategy_info:
   name: "RSI_Strategy"
-  base_class: "DirectionalStrategy."
+  base_class: "DirectionalStrategyBase"
 
 market_config:
-  exchange: "binance"
+  exchange: "binance_perpetual"
   trading_pair: "ETH-USDT"
   api_key: "your_api_key"
   api_secret: "your_api_secret"
 
 trade_parameters:
-  order_amount_usd: 100
+  order_amount_usd: 40
   leverage: 10
-  stop_loss: 0.01
-  take_profit: 0.02
+  stop_loss: 0.0075
+  take_profit: 0.015
+  time_limit: 60
   trailing_stop_activation_delta: 0.004
   trailing_stop_trailing_delta: 0.001
 
+candlestick_configuration:
+  candles:
+    - connector: "binance_perpetual"
+      trading_pair: "ETH-USDT"
+      interval: "3m"
+      max_records: 1000
+
 indicators:
   - name: "RSI"
-    length: 14
-  - name: "MACD"
-    fast_length: 12
-    slow_length: 26
-    signal_smoothing: 9
-  - name: "EMA"
-    length: 9
+    length: 7
 
 signal_conditions:
   buy_conditions:
     - indicator: "RSI"
       operator: "<"
       value: 30
-    - indicator: "MACD"
-      cross_type: "bullish"
+    
   sell_conditions:
     - indicator: "RSI"
       operator: ">"
       value: 70
-    - indicator: "MACD"
-      cross_type: "bearish"
+    

@@ -1,24 +1,18 @@
     
+    
     def get_signal(self):
         candles_df = self.get_processed_df()
-
-        # Default signal is hold (0)
-        signal = 0
-
         # Check for buy conditions
-        {% for condition in signal_conditions.buy_conditions %}
+        {%- for condition in signal_conditions.buy_conditions %}
         if candles_df["{{ condition.indicator }}"].iat[-1] {{ condition.operator }} {{ condition.value }}:
-            signal = 1
-            break  # Exit loop on first true condition
-        {% endfor %}
+            return 1
+        {% endfor -%}
+        # Check for sell conditions
+        {%- for condition in signal_conditions.sell_conditions %}
+        elif candles_df["{{ condition.indicator }}"].iat[-1] {{ condition.operator }} {{ condition.value }}:
+            return -1
+        {% endfor -%}
+        # Default to hold if no conditions met
+        else:
+            return 0
 
-        # Check for sell conditions if no buy signal
-        {% if signal == 0 %}
-        {% for condition in signal_conditions.sell_conditions %}
-        if candles_df["{{ condition.indicator }}"].iat[-1] {{ condition.operator }} {{ condition.value }}:
-            signal = -1
-            break  # Exit loop on first true condition
-        {% endfor %}
-        {% endif %}
-
-        return signal
