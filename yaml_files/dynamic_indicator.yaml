@@ -1,6 +1,7 @@
 strategy_info:
   name: "RSI_Strategy"
-  base_class: "DirectionalStrategyBase"
+  base_class: "ScriptStrategyBase"
+  type: PMM
 
 market_config:
   exchange: "binance_perpetual"

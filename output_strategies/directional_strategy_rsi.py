@@ -1,10 +1,10 @@
 # Import necessary modules
 from decimal import Decimal
 from hummingbot.data_feed.candles_feed.candles_factory import CandlesConfig, CandlesFactory
-from hummingbot.strategy.directional_strategy_base import DirectionalStrategyBase
+from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
 
 # Strategy Class Definition
-class RSI_Strategy(DirectionalStrategyBase):
+class RSI_Strategy(ScriptStrategyBase):
     # Strategy Metadata
     strategy_name: str = "RSI_Strategy"    
     
@@ -14,14 +14,12 @@ class RSI_Strategy(DirectionalStrategyBase):
     api_key = "your_api_key"
     api_secret = "your_api_secret"
     order_amount_usd = Decimal("40")
-    leverage = 10    
-    
-    # Configure the parameters for the position
-    stop_loss: float = 0.0075
-    take_profit: float = 0.015
-    time_limit: int = 60
-    trailing_stop_activation_delta = 0.004
-    trailing_stop_trailing_delta = 0.001
+    leverage = 10
+    # PMM Parameters
+    bid_spread = 
+    ask_spread = 
+    order_refresh_time = 
+
 
     # Candles configuration 
     candles = [CandlesFactory.get_candle(CandlesConfig(connector="binance_perpetual", trading_pair="ETH-USDT", interval="3m", max_records=1000))]
@@ -32,6 +30,8 @@ class RSI_Strategy(DirectionalStrategyBase):
     rsi_overbought = 70
     rsi_oversold = 30
     
+    
+    # This is the order order_management section 
         
 
     # Function to process indicators
@@ -42,7 +42,8 @@ class RSI_Strategy(DirectionalStrategyBase):
         # Calculate RSI
         candles_df["RSI_7"] = ta.rsi(candles_df["close"], length=7)
         return candles_df
-    
+
+        
     
     def get_signal(self):
         candles_df = self.get_processed_df()

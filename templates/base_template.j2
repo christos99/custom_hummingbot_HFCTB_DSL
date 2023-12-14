@@ -24,11 +24,20 @@ class {{ strategy_info.name }}({{ strategy_info.base_class }}):
 
     {#- Initialize indicator parameters -#}
     {% include 'setup_indicators.j2' %}
+    
+    {%- if strategy_info.type == "PMM" %}
+    {% include 'order_management.j2' %}
+    {%- endif %}
+
         
     {#- Other initializations, if any -#}
 
     {#- Indicator process logic -#}
+    {%- if candlestick_configuration %}
     {% include 'get_processed_df.j2' %}
+    {%- endif %}
 
     {#- Signal generation logic -#}
+    {%- if signal_conditions %}
     {% include 'signal_generation.j2' %}
+    {%- endif %}
