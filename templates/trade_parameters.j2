@@ -35,11 +35,11 @@
     cooldown_after_execution = {{ trade_parameters.cooldown_after_execution }}
     {%- endif %}
 {%- endif %}
-
-{%- if strategy_info.type == "PMM" %}
+{% if strategy_info.type == "PMM" %}
     # PMM Parameters
     bid_spread = {{ trade_parameters.bid_spread }}
     ask_spread = {{ trade_parameters.ask_spread }}
     order_refresh_time = {{ trade_parameters.order_refresh_time }}
+    price_source = PriceType.{{ trade_parameters.price_source }} 
 {% endif -%}
 

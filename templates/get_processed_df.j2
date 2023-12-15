@@ -1,5 +1,5 @@
-    
-
+{%- if candlestick_configuration %}
+    {%- if strategy_info.type == "Directional" %}
     # Function to process indicators
     def get_processed_df(self):
 
@@ -31,4 +31,6 @@
         {% endif -%}
         {% endfor %}
         return candles_df
+    {% endif -%}
+{% endif -%}
 

@@ -1,6 +1,5 @@
 strategy_info:
   name: "RSI_Strategy"
-  base_class: "ScriptStrategyBase"
   type: PMM
 
 market_config:
@@ -12,11 +11,12 @@ market_config:
 trade_parameters:
   order_amount_usd: 40
   leverage: 10
-  stop_loss: 0.0075
-  take_profit: 0.015
-  time_limit: 60
+  bid_spread: 10  
+  ask_spread: 10
+  order_refresh_time: 10
   trailing_stop_activation_delta: 0.004
   trailing_stop_trailing_delta: 0.001
+  price_source: MidPrice
 
 candlestick_configuration:
   candles:
@@ -24,10 +24,20 @@ candlestick_configuration:
       trading_pair: "ETH-USDT"
       interval: "3m"
       max_records: 1000
+    
+order_management:
+  buy_order:
+    is_maker: True
+    order_type: LIMIT
+  sell_order:
+    is_maker: False
+    order_type: MARKET
 
 indicators:
   - name: "RSI"
-    length: 7
+    length: "14"
+    overbought_threshold: "70"
+    oversold_threshold: "30"
 
 signal_conditions:
   buy_conditions:

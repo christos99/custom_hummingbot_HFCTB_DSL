@@ -1,246 +1,226 @@
- strategy_model:
+ strategy_info:
   name: "<strategy_name>"
   version: "<version>"
-  type: "<Strategy | Script>"
+  type: "<PMM | Directional>"
   author: "<author_name>"
   description: "<brief_description_of_strategy>"
   labels:
     - "<label1>"
-    - "<label2>"
-  exchanges:
-    - name: "<exchange_name>"
-      apiKey: "<api_key>"
-      apiSecret: "<api_secret>"
-  trading_pairs:
-    - pair: "<pair1>"
-      base_asset: "<base_asset>"
-      quote_asset: "<quote_asset>"
-    - pair: "<pair2>"
-      base_asset: "<base_asset>"
-      quote_asset: "<quote_asset>"
-  # Add more trading pairs as required
 
-  strategy_parameters:
-    - name: "<parameter_name>"  # Identifier for the parameter
-      type: <int | float | str | bool | list | dict>  # Data type of the parameter
-      description: "<description>"  # Brief description of what the parameter does
-      prompt_msg: "<prompt_message>"  # Message shown when prompting for input
-      default: <default_value>  # Default value if none is provided
-      keyword: "<keyword>"  # A unique keyword for identifying the parameter
-      dynamic_reconfigure: <true | false>  # Can this parameter be changed dynamically
-      prompt_on_new: <true | false>  # Should the user be prompted for this parameter on new strategy creation
-      range: # Applicable for numerical types, specifies the valid range
-        min: <min_value>
-        max: <max_value>
-      options: # List of valid options for string type parameters
-        - "<option1>"
-        - "<option2>"
-      visibility: "<always | conditional>"  # When should this parameter be visible
-      depends_on: "<dependent_parameter_name>"  # Parameter dependency
-      dependency_value: "<dependency_value>"  # Value of the dependent parameter that enables this parameter
-    - name: "position_parameter_name"
-      type: <type>
-      default: <default_value>
-      description: "<description for position parameter>"
+market_config:
+  exchange: "<exchange_name>"
+  trading_pair: "<pair>"
+  api_key: "your_api_key"
+  api_secret: "your_api_secret"
 
-  position_parameters:
-    - name: "<position_parameter_name>"  # Identifier for the position-specific parameter
-      type: <float | int>  # Typically float for percentages, int for time/duration
-      description: "<description>"  # Detailed explanation specific to position management
-      default: <default_value>  # Default value for the parameter
-      range: # Specifies the valid range for the parameter
-        min: <min_value>
-        max: <max_value>
-      threshold: # For parameters like stop loss or take profit
-        activation: <activation_threshold>
-        deactivation: <deactivation_threshold>
-      time_limit: # Duration in seconds for time-based parameters
-        value: <time_in_seconds>
-      dependency: # If this parameter's applicability depends on another
-        depends_on: "<dependent_parameter_name>"
-        value: <dependency_value>
+trade_parameters:
+  - name: "<parameter_name>"
+    type: <int | float | str | bool | list | dict>
+    value: <value>
+    description: "<description>"
+    default: <default_value>
 
-  position_executors:
-    description: "Configuration for position executors in the strategy."
-    executors:
-      - name: "<executor_name>"
-        max_executors: <max_executors_number>
-        position_mode: "<HEDGE | ONE-WAY>"
-        active_executors: [ ]
-        stored_executors: [ ]
-        executor_config:
-          param1: <value1>
-          param2: <value2>
-          # Additional configuration parameters as needed
+candlestick_configuration:
+  candles:
+    - connector: "<connector_name>"
+      trading_pair: "<trading_pair>"
+      interval: "<interval>"
+      max_records: <max_records_number>
 
-  components:
-    candles:
-      - name: "candles_name"
-        config:
-          connector: "exchange_connector"
-          trading_pair: "trading_pair"
-          interval: "interval"
-          max_records: "max_candles_records"
+indicators:
+  - name: "<indicator_name>"
+    parameters:
+      param1: "<param1_value>"
+      param2: "<param2_value>"
+      # Add more parameters as needed
 
-    controllers:
-      - name: "controller_name"
-        config:
-          macd_fast: "macd_fast_period"
-          macd_slow: "macd_slow_period"
-          macd_signal: "macd_signal_period"
-          bb_length: "bb_length"
-          bb_std: "bb_standard_deviation"
+signal_conditions:
+  buy_conditions:
+    - indicator: "<indicator_name>"
+      operator: "<operator>"
+      value: "<value>"
+  sell_conditions:
+    - indicator: "<indicator_name>"
+      operator: "<operator>"
+      value: "<value>"
 
-    executors:
-      - name: "executor_name"
-        config:
-          stop_loss: "stop_loss_percentage"
-          take_profit: "take_profit_percentage"
-          time_limit: "position_time_limit"
-          trailing_stop:
-            activation_price_delta: "trailing_stop_activation_delta"
-            trailing_delta: "trailing_stop_delta"
+order_management:
+  buy_order:
+    - is_maker: <bool>
+      order_type: <LIMIT | MARKET>
+  sell_order:
+    - is_maker: <bool>
+      order_type: <LIMIT | MARKET>
 
-    indicators:
-      - name: "indicator_name"
-        config:
-          length: "indicator_length"
-          overbought_threshold: "indicator_ob_threshold"
-          oversold_threshold: "indicator_os_threshold"
 
-    arbitrage:
-      - name: "arbitrage_executor_name"
-        config:
-          exchange_pair_1:
-            exchange: "first_arbitrage_exchange"
-            trading_pair: "first_arbitrage_trading_pair"
-          exchange_pair_2:
-            exchange: "second_arbitrage_exchange"
-            trading_pair: "second_arbitrage_trading_pair"
-          order_amount: "arbitrage_order_amount"
-          min_profitability: "minimum_arbitrage_profitability"
+  # components:
+  #   candles:
+  #     - name: "candles_name"
+  #       config:
+  #         connector: "exchange_connector"
+  #         trading_pair: "trading_pair"
+  #         interval: "interval"
+  #         max_records: "max_candles_records"
+
+  #   controllers:
+  #     - name: "controller_name"
+  #       config:
+  #         macd_fast: "macd_fast_period"
+  #         macd_slow: "macd_slow_period"
+  #         macd_signal: "macd_signal_period"
+  #         bb_length: "bb_length"
+  #         bb_std: "bb_standard_deviation"
+
+  #   executors:
+  #     - name: "executor_name"
+  #       config:
+  #         stop_loss: "stop_loss_percentage"
+  #         take_profit: "take_profit_percentage"
+  #         time_limit: "position_time_limit"
+  #         trailing_stop:
+  #           activation_price_delta: "trailing_stop_activation_delta"
+  #           trailing_delta: "trailing_stop_delta"
+
+  #   indicators:
+  #     - name: "indicator_name"
+  #       config:
+  #         length: "indicator_length"
+  #         overbought_threshold: "indicator_ob_threshold"
+  #         oversold_threshold: "indicator_os_threshold"
+
+  #   arbitrage:
+  #     - name: "arbitrage_executor_name"
+  #       config:
+  #         exchange_pair_1:
+  #           exchange: "first_arbitrage_exchange"
+  #           trading_pair: "first_arbitrage_trading_pair"
+  #         exchange_pair_2:
+  #           exchange: "second_arbitrage_exchange"
+  #           trading_pair: "second_arbitrage_trading_pair"
+  #         order_amount: "arbitrage_order_amount"
+  #         min_profitability: "minimum_arbitrage_profitability"
 
 
 
-  execution_logic:
-    entry_conditions:
-      - component: "RSIStrategyComponent"
-        condition: "<30"  # Enter when RSI is below 30
-    exit_conditions:
-      - component: "RSIStrategyComponent"
-        condition: ">70"  # Exit when RSI is above 70
+  # execution_logic:
+  #   entry_conditions:
+  #     - component: "RSIStrategyComponent"
+  #       condition: "<30"  # Enter when RSI is below 30
+  #   exit_conditions:
+  #     - component: "RSIStrategyComponent"
+  #       condition: ">70"  # Exit when RSI is above 70
 
 
 
-  candlestick_configuration:
-    description: "Configuration for candlestick data used in generating signals."
-    candles:
-      - component: "CandlesFactory"
-        config:
-          connector: "<exchange_connector>"
-          trading_pair: "<trading_pair>"
-          interval: "<time_interval>"
-          max_records: <number_of_records>
+  # candlestick_configuration:
+  #   description: "Configuration for candlestick data used in generating signals."
+  #   candles:
+  #     - component: "CandlesFactory"
+  #       config:
+  #         connector: "<exchange_connector>"
+  #         trading_pair: "<trading_pair>"
+  #         interval: "<time_interval>"
+  #         max_records: <number_of_records>
 
-  methods:
-    - name: "<methods_name>"
-        description: "<methods_description>"
-        input:
-          - name:  "<input_name>"
-            type: "<input_type>"
-            description: "<inputs_description>"
-          # Add more input data as needed
-        smart_component: "<smart_component_reference>"
-        parameters:
-          - name: "<parameter_name>"
-            value: "<parameter_reference | new assign value>"   # Assign a new value for the parameter or use the default value (Note that the parameter has to be already defined)
-        # Add more parameters as needed
-        body:
-          - # Here define user code for the body
-          - # Here define user code for the body
-          -
-        return:
-          type: any
-          description: # Describe the output value
+  # methods:
+  #   - name: "<methods_name>"
+  #       description: "<methods_description>"
+  #       input:
+  #         - name:  "<input_name>"
+  #           type: "<input_type>"
+  #           description: "<inputs_description>"
+  #         # Add more input data as needed
+  #       smart_component: "<smart_component_reference>"
+  #       parameters:
+  #         - name: "<parameter_name>"
+  #           value: "<parameter_reference | new assign value>"   # Assign a new value for the parameter or use the default value (Note that the parameter has to be already defined)
+  #       # Add more parameters as needed
+  #       body:
+  #         - # Here define user code for the body
+  #         - # Here define user code for the body
+  #         -
+  #       return:
+  #         type: any
+  #         description: # Describe the output value
 
-  indicators:
-    - name: RSI
-        config:
-          length: 14
-          overbought_threshold: 70
-          oversold_threshold: 30
-    - name: MovingAverage
-        config:
-          type: "simple"  # Options: simple, exponential, etc.
-          period: 20
-    - name: MACD
-        config:
-          short_period: 12
-          long_period: 26
-          signal_period: 9
-    - name: BollingerBands
-        config:
-          length: 20
-          stddev: 2
-    - name: StochasticOscillator
-        config:
-          k_period: 14
-          d_period: 3
-    - name: SMA
-        config:
-          period: 20
-    - name: EMA
-        config:
-          period: 50
-    - name: CustomIndicator
-        config:
-          param1: value1
-          param2: value2
-        logic: |
-          def calculate_custom_indicator(data):
-              # Custom logic using param1 and param2
-              result = some_complex_calculation(data, param1, param2)
-              return result
+  # indicators:
+  #   - name: RSI
+  #       config:
+  #         length: 14
+  #         overbought_threshold: 70
+  #         oversold_threshold: 30
+  #   - name: MovingAverage
+  #       config:
+  #         type: "simple"  # Options: simple, exponential, etc.
+  #         period: 20
+  #   - name: MACD
+  #       config:
+  #         short_period: 12
+  #         long_period: 26
+  #         signal_period: 9
+  #   - name: BollingerBands
+  #       config:
+  #         length: 20
+  #         stddev: 2
+  #   - name: StochasticOscillator
+  #       config:
+  #         k_period: 14
+  #         d_period: 3
+  #   - name: SMA
+  #       config:
+  #         period: 20
+  #   - name: EMA
+  #       config:
+  #         period: 50
+  #   - name: CustomIndicator
+  #       config:
+  #         param1: value1
+  #         param2: value2
+  #       logic: |
+  #         def calculate_custom_indicator(data):
+  #             # Custom logic using param1 and param2
+  #             result = some_complex_calculation(data, param1, param2)
+  #             return result
 
 
 
 
-  strategy_conditions:
-    stop_loss:
-      description: "Stop Loss Condition"
-      threshold: 0.05  # 5% loss
+  # strategy_conditions:
+  #   stop_loss:
+  #     description: "Stop Loss Condition"
+  #     threshold: 0.05  # 5% loss
 
-    take_profit:
-      description: "Take Profit Condition"
-      threshold: 0.1  # 10% profit
+  #   take_profit:
+  #     description: "Take Profit Condition"
+  #     threshold: 0.1  # 10% profit
 
-    trailing_stop:
-      description: "Trailing Stop Condition"
-      activation_delta: 0.02  # Activate when profit reaches 2%
-      trailing_delta: 0.01  # Trail by 1%
+  #   trailing_stop:
+  #     description: "Trailing Stop Condition"
+  #     activation_delta: 0.02  # Activate when profit reaches 2%
+  #     trailing_delta: 0.01  # Trail by 1%
 
-    time_based_exit:
-      description: "Time-Based Exit Condition"
-      time_limit_seconds: 3600  # 1 hour
+  #   time_based_exit:
+  #     description: "Time-Based Exit Condition"
+  #     time_limit_seconds: 3600  # 1 hour
 
-    volume_conditions:
-      description: "Volume Conditions"
-      min_volume: 1000000
+  #   volume_conditions:
+  #     description: "Volume Conditions"
+  #     min_volume: 1000000
 
-    volatility_conditions:
-      description: "Volatility Conditions"
-      min_volatility: 0.03  # 3% volatility
+  #   volatility_conditions:
+  #     description: "Volatility Conditions"
+  #     min_volatility: 0.03  # 3% volatility
 
-    price_based_conditions:
-      description: "Price-Based Conditions"
-      support_level: 500.00
-      resistance_level: 550.00
+  #   price_based_conditions:
+  #     description: "Price-Based Conditions"
+  #     support_level: 500.00
+  #     resistance_level: 550.00
 
-  custom_methods:
-    - name: "method_name"
-      description: "<description>"
-      implementation: |
-        # Custom method implementation
+  # custom_methods:
+  #   - name: "method_name"
+  #     description: "<description>"
+  #     implementation: |
+  #       # Custom method implementation
 
 
 
@@ -345,4 +325,46 @@
 #        type: stop_limit
 #        stop_price: <stop_price>
 #        limit_price: <limit_price>
+
+# trade_parameters:
+#     - name: "<parameter_name>"  # Identifier for the parameter
+#       type: <int | float | str | bool | list | dict>  # Data type of the parameter
+#       description: "<description>"  # Brief description of what the parameter does
+#       #prompt_msg: "<prompt_message>"  # Message shown when prompting for input
+#       default: <default_value>  # Default value if none is provided
+#       #dynamic_reconfigure: <true | false>  # Can this parameter be changed dynamically
+#       #prompt_on_new: <true | false>  # Should the user be prompted for this parameter on new strategy creation
+#       #range: # Applicable for numerical types, specifies the valid range
+#         #min: <min_value>
+#         #max: <max_value>
+#       # visibility: "<always | conditional>"  # When should this parameter be visible
+
+# position_parameters:
+#     - name: "<position_parameter_name>"  # Identifier for the position-specific parameter
+#       type: <float | int>  # Typically float for percentages, int for time/duration
+#       description: "<description>"  # Detailed explanation specific to position management
+#       default: <default_value>  # Default value for the parameter
+#       range: # Specifies the valid range for the parameter
+#         min: <min_value>
+#         max: <max_value>
+#       threshold: # For parameters like stop loss or take profit
+#         activation: <activation_threshold>
+#         deactivation: <deactivation_threshold>
+#       time_limit: # Duration in seconds for time-based parameters
+#         value: <time_in_seconds>
+#       dependency: # If this parameter's applicability depends on another
+#         depends_on: "<dependent_parameter_name>"
+#         value: <dependency_value>
+
+ 
+
+  
+
+  
+
+  
+
+
+
+  
 

@@ -1,0 +1,86 @@
+trade_parameters:
+  Directional:
+  - name: "order_amount_usd"
+    type: float
+    value: <value>
+    description: "Bid spread for the order"
+    default: 0.001
+
+  - name: "leverage"
+    type: float
+    value: <value>
+    description: "Ask spread for the order"
+    default: 0.001
+
+  - name: "bid_spread"
+    type: int
+    value: <value>
+    description: "Time in seconds to refresh orders"
+    default: 15
+
+  - name: "ask_spread"
+    type: int
+    value: <value>
+    description: "Initial timestamp for order creation"
+    default: 0
+
+  - name: "order_refresh_time"
+    type: float
+    value: <value>
+    description: "The amount of the order"
+    default: 0.01
+
+  - name: "trailing_stop_activation_delta"
+    type: int
+    value: <value>
+    description: "Initial timestamp for order creation"
+    default: 0
+  
+  - name: "trailing_stop_trailing_delta"
+    type: int
+    value: <value>
+    description: "Initial timestamp for order creation"
+    default: 0
+  
+  - name: "price_source"
+    type: str
+    value: <value>
+    description: "Source of price data for orders"
+    default: "MidPrice"
+  PMM:
+  - name: "bid_spread"
+    type: float
+    value: <value>
+    description: "Bid spread for the order"
+    default: 0.001
+
+  - name: "ask_spread"
+    type: float
+    value: <value>
+    description: "Ask spread for the order"
+    default: 0.001
+
+  - name: "order_refresh_time"
+    type: int
+    value: <value>
+    description: "Time in seconds to refresh orders"
+    default: 15
+
+  - name: "create_timestamp"
+    type: int
+    value: <value>
+    description: "Initial timestamp for order creation"
+    default: 0
+
+  - name: "order_amount"
+    type: float
+    value: <value>
+    description: "The amount of the order"
+    default: 0.01
+
+  - name: "price_source"
+    type: str
+    value: <value>
+    description: "Source of price data for orders"
+    default: "MidPrice"
+

@@ -3,9 +3,13 @@ from decimal import Decimal
 {%- if candlestick_configuration %}
 from hummingbot.data_feed.candles_feed.candles_factory import CandlesConfig, CandlesFactory
 {% endif %}
-{%- if strategy_info.base_class == 'DirectionalStrategyBase' -%}
+{%- if strategy_info.type == 'Directional' -%}
 from hummingbot.strategy.directional_strategy_base import DirectionalStrategyBase
-{%- elif strategy_info.base_class == 'ScriptStrategyBase' -%}
+{%- elif strategy_info.type == 'PMM' -%}
+from typing import List
+from hummingbot.core.data_type.common import OrderType, PriceType, TradeType
+from hummingbot.core.data_type.order_candidate import OrderCandidate
+from hummingbot.core.event.events import OrderFilledEvent
 from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
 {%- endif %}
 
@@ -22,22 +26,20 @@ class {{ strategy_info.name }}({{ strategy_info.base_class }}):
     {#- Initialize candlestick configuration -#}
     {% include 'candlestick_config.j2' %}
 
-    {#- Initialize indicator parameters -#}
+    {#- Initialize markets #}
+    # Market initialization
+    markets = {{ market_config.exchange }}: {{market_config.trading_pair}}
+    
+    {#- Initialize indicator parameters  -#}
     {% include 'setup_indicators.j2' %}
     
-    {%- if strategy_info.type == "PMM" %}
+    {#- Initialize order management if PMM -#}
     {% include 'order_management.j2' %}
-    {%- endif %}
 
-        
     {#- Other initializations, if any -#}
 
-    {#- Indicator process logic -#}
-    {%- if candlestick_configuration %}
+    {#- Indicator process logic if Directional -#}
     {% include 'get_processed_df.j2' %}
-    {%- endif %}
 
-    {#- Signal generation logic -#}
-    {%- if signal_conditions %}
+    {#- Signal generation logic if Directional -#}
     {% include 'signal_generation.j2' %}
-    {%- endif %}

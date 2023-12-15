@@ -1,5 +1,5 @@
-    
-    
+{%- if signal_conditions %}
+    {%- if strategy_info.type == "Directional" %}
     def get_signal(self):
         candles_df = self.get_processed_df()
         # Check for buy conditions
@@ -15,4 +15,6 @@
         # Default to hold if no conditions met
         else:
             return 0
+    {% endif -%}
+{% endif -%}
 

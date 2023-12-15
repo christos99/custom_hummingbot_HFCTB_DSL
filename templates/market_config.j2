@@ -6,4 +6,6 @@
     api_key = "{{ market_config.api_key }}"
     api_secret = "{{ market_config.api_secret }}"
     order_amount_usd = Decimal("{{ trade_parameters.order_amount_usd }}")
+    {%- if trade_parameters.leverage %}
     leverage = {{ trade_parameters.leverage }}
+    {%-endif %}
