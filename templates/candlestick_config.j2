@@ -1,5 +1,5 @@
-{% if candlestick_configuration %}
-{%- for candle in candlestick_configuration.candles%}
+{% if candles %}
+{%- for candle in candles%}
     # Candles configuration 
     candles = [CandlesFactory.get_candle(CandlesConfig(connector="{{ candle.connector }}", trading_pair="{{ candle.trading_pair }}", interval="{{ candle.interval }}", max_records={{ candle.max_records }}))]
 {% endfor -%}

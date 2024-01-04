@@ -20,12 +20,11 @@ trade_parameters:
     description: "<description>"
     default: <default_value>
 
-candlestick_configuration:
-  candles:
-    - connector: "<connector_name>"
-      trading_pair: "<trading_pair>"
-      interval: "<interval>"
-      max_records: <max_records_number>
+candles:
+  - connector: "<connector_name>"
+    trading_pair: "<trading_pair>"
+    interval: "<interval>"
+    max_records: <max_records_number>
 
 indicators:
   - name: "<indicator_name>"
