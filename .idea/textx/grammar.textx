@@ -1,0 +1,59 @@
+Strategy:
+  'strategy_info:' strategy_info=StrategyInfo
+  'market_config:' market_config=MarketConfig
+  'trade_parameters:' trade_parameters+=TradeParameter*
+  'candles:' candles+=Candle*
+  'indicators:' indicators+=Indicator*
+  'signal_conditions:' signal_conditions=SignalConditions
+  'order_management:' order_management=OrderManagement;
+
+StrategyInfo:
+  'name:' name=STRING
+  'version:' version=STRING
+  'type:' type=('PMM' | 'Directional')
+  'author:' author_name=STRING
+  'description:' description=STRING
+  'labels:' labels+=STRING*;
+
+MarketConfig:
+  'exchange:' exchange_name=STRING
+  'trading_pair:' trading_pair=STRING
+  'api_key:' api_key=STRING
+  'api_secret:' api_secret=STRING;
+
+TradeParameter:
+  name=STRING
+  'type:' type=('int' | 'float' | 'str' | 'bool' | 'list' | 'dict')
+  'value:' value=VALUE
+  'description:' description=STRING
+  'default:' default_value=VALUE;
+
+Candle:
+  connector=STRING
+  'trading_pair:' trading_pair=STRING
+  'interval:' interval=STRING
+  'max_records:' max_records=INT;
+
+Indicator:
+  'name:' name=STRING
+  parameters+=Parameter*;
+
+Parameter:
+  key=STRING value=STRING;
+
+SignalConditions:
+  'buy_conditions:' buy_conditions+=Condition*
+  'sell_conditions:' sell_conditions+=Condition*;
+
+Condition:
+  'indicator:' indicator=STRING
+  'operator:' operator=STRING
+  'value:' value=STRING;
+
+OrderManagement:
+  'buy_order:' buy_order+=Order*
+  'sell_order:' sell_order+=Order*;
+
+Order:
+  'is_maker:' is_maker=BOOL
+  'order_type:' order_type=('LIMIT' | 'MARKET');
