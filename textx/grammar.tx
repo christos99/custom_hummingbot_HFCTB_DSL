@@ -10,10 +10,12 @@ Strategy:
 StrategyInfo:
   'name:' name=STRING
   'version:' version=STRING
-  'type:' type=('PMM' | 'Directional')
-  'author:' author_name=STRING
+  'type:' type=StrategyType
+  'author:' author=STRING
   'description:' description=STRING
   'labels:' labels+=STRING*;
+
+StrategyType: 'PMM' | 'Directional';
 
 MarketConfig:
   'exchange:' exchange_name=STRING
@@ -22,14 +24,16 @@ MarketConfig:
   'api_secret:' api_secret=STRING;
 
 TradeParameter:
-  name=STRING
-  'type:' type=('int' | 'float' | 'str' | 'bool' | 'list' | 'dict')
+  'name:' name=STRING
+  'type:' type=TradeParameterType
   'value:' value=VALUE
   'description:' description=STRING
   'default:' default_value=VALUE;
 
+TradeParameterType: 'int' | 'float' | 'str' | 'bool' | 'list' | 'dict';
+
 Candle:
-  connector=STRING
+  'connector:' connector=STRING
   'trading_pair:' trading_pair=STRING
   'interval:' interval=STRING
   'max_records:' max_records=INT;
@@ -39,7 +43,8 @@ Indicator:
   parameters+=Parameter*;
 
 Parameter:
-  key=STRING value=STRING;
+  'key:' key=STRING
+  'value:' value=VALUE;
 
 SignalConditions:
   'buy_conditions:' buy_conditions+=Condition*
@@ -51,9 +56,15 @@ Condition:
   'value:' value=STRING;
 
 OrderManagement:
-  'buy_order:' buy_order+=Order*
-  'sell_order:' sell_order+=Order*;
+  'buy_order:' buy_orders+=Order*
+  'sell_order:' sell_orders+=Order*;
 
 Order:
   'is_maker:' is_maker=BOOL
-  'order_type:' order_type=('LIMIT' | 'MARKET');
+  'order_type:' order_type=OrderType;
+
+OrderType: 'LIMIT' | 'MARKET';
+
+// Definitions for STRING and VALUE
+STRING: /[a-zA-Z0-9_]+/;
+VALUE: /-?\d+(\.\d+)?/;

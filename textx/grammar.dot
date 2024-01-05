@@ -1,0 +1,66 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4561803408[ label="{Strategy|}"]
+
+4561805328[ label="{StrategyInfo|name: STRING\lversion: STRING\ltype: StrategyType\lauthor: STRING\ldescription: STRING\llabels: list[STRING]\l}"]
+
+4561810704[ label="{MarketConfig|exchange_name: STRING\ltrading_pair: STRING\lapi_key: STRING\lapi_secret: STRING\l}"]
+
+4561813392[ label="{TradeParameter|name: STRING\ltype: TradeParameterType\lvalue: VALUE\ldescription: STRING\ldefault_value: VALUE\l}"]
+
+4561818768[ label="{Candle|connector: STRING\ltrading_pair: STRING\linterval: STRING\lmax_records: INT\l}"]
+
+4561821456[ label="{Indicator|name: STRING\l}"]
+
+4561824144[ label="{Parameter|key: STRING\lvalue: VALUE\l}"]
+
+4561826832[ label="{SignalConditions|}"]
+
+4561829520[ label="{Condition|indicator: STRING\loperator: STRING\lvalue: STRING\l}"]
+
+4561832208[ label="{OrderManagement|}"]
+
+4561834896[ label="{Order|is_maker: BOOL\lorder_type: OrderType\l}"]
+
+
+
+4561803408 -> 4561805328[arrowtail=diamond, dir=both, headlabel="strategy_info "]
+4561803408 -> 4561810704[arrowtail=diamond, dir=both, headlabel="market_config "]
+4561803408 -> 4561813392[arrowtail=diamond, dir=both, headlabel="trade_parameters 1..*"]
+4561803408 -> 4561818768[arrowtail=diamond, dir=both, headlabel="candles 1..*"]
+4561803408 -> 4561821456[arrowtail=diamond, dir=both, headlabel="indicators 1..*"]
+4561803408 -> 4561826832[arrowtail=diamond, dir=both, headlabel="signal_conditions "]
+4561803408 -> 4561832208[arrowtail=diamond, dir=both, headlabel="order_management "]
+4561821456 -> 4561824144[arrowtail=diamond, dir=both, headlabel="parameters 1..*"]
+4561826832 -> 4561829520[arrowtail=diamond, dir=both, headlabel="buy_conditions 1..*"]
+4561826832 -> 4561829520[arrowtail=diamond, dir=both, headlabel="sell_conditions 1..*"]
+4561832208 -> 4561834896[arrowtail=diamond, dir=both, headlabel="buy_orders 1..*"]
+4561832208 -> 4561834896[arrowtail=diamond, dir=both, headlabel="sell_orders 1..*"]
+match_rules [ shape=plaintext, label=< <table>
+	<tr>
+		<td><b>OrderType</b></td><td>LIMIT|MARKET</td>
+	</tr>
+	<tr>
+		<td><b>StrategyType</b></td><td>PMM|Directional</td>
+	</tr>
+	<tr>
+		<td><b>TradeParameterType</b></td><td>int|float|str|bool|list|dict</td>
+	</tr>
+	<tr>
+		<td><b>VALUE</b></td><td>-?\d+(\.\d+)?</td>
+	</tr>
+</table> >]
+
+
+}
