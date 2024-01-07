@@ -54,6 +54,9 @@ Condition:
   'indicator:' indicator=STRING
   'operator:' operator=STRING
   'value:' value=STRING;
+  'conditionType:' conditionType+=ConditionType*
+
+ConditionType: 'buyCondition' | 'sellCondition' 
 
 Order:
 'isMaker:' isMaker=BOOL
