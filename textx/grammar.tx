@@ -5,14 +5,14 @@ Strategy:
   'candles:' candles+=Candle*
   'indicators:' indicators+=Indicator*
   'signal_conditions:' signal_conditions=SignalConditions
-  'order_management:' order_management=OrderManagement;
+  'orders:' orders=Orders;
 
 StrategyInfo:
-  'name:' name=STRING
-  'version:' version=STRING
-  'type:' type=StrategyType
   'author:' author=STRING
   'description:' description=STRING
+  'name:' name=STRING
+  'type:' type=StrategyType
+  'version:' version=FLOAT
   'labels:' labels+=STRING*;
 
 StrategyType: 'PMM' | 'Directional';
@@ -20,15 +20,15 @@ StrategyType: 'PMM' | 'Directional';
 MarketConfig:
   'exchange:' exchange_name=STRING
   'trading_pair:' trading_pair=STRING
-  'api_key:' api_key=STRING
-  'api_secret:' api_secret=STRING;
+  'api_key:' api_key=INT
+  'api_secret:' api_secret=INT;
 
 TradeParameter:
   'name:' name=STRING
   'type:' type=TradeParameterType
-  'value:' value=VALUE
+  'value:' value=FLOAT
   'description:' description=STRING
-  'default:' default_value=VALUE;
+  'default:' default_value=FLOAT;
 
 TradeParameterType: 'int' | 'float' | 'str' | 'bool' | 'list' | 'dict';
 
@@ -55,7 +55,7 @@ Condition:
   'operator:' operator=STRING
   'value:' value=STRING;
 
-OrderManagement:
+Orders:
   'buy_order:' buy_orders+=Order*
   'sell_order:' sell_orders+=Order*;
 
@@ -67,4 +67,6 @@ OrderType: 'LIMIT' | 'MARKET';
 
 // Definitions for STRING and VALUE
 STRING: /[a-zA-Z0-9_]+/;
-VALUE: /-?\d+(\.\d+)?/;
+INT: /\d+/;
+FLOAT: /-?\d+(\.\d+)?/;
+BOOL: /true|false/;
