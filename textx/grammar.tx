@@ -26,9 +26,9 @@ MarketConfig:
 TradeParameter:
   'name:' name=STRING
   'type:' type=TradeParameterType
-  'value:' value=FLOAT
+  'value:' value=VALUE
   'description:' description=STRING
-  'default:' default_value=FLOAT;
+  'default:' default_value=VALUE;
 
 TradeParameterType: 'int' | 'float' | 'str' | 'bool' | 'list' | 'dict';
 
@@ -67,6 +67,7 @@ OrderType: 'LIMIT' | 'MARKET';
 
 // Definitions for STRING and VALUE
 STRING: /[a-zA-Z0-9_]+/;
+VALUE: /-?\d+(\.\d+)?/;
 INT: /\d+/;
 FLOAT: /-?\d+(\.\d+)?/;
 BOOL: /true|false/;
