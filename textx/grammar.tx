@@ -1,10 +1,10 @@
 Strategy:
-  'strategy_info:' strategy_info=StrategyInfo
-  'market_config:' market_config=MarketConfig
-  'trade_parameters:' trade_parameters+=TradeParameter*
+  'strategyInfo:' strategyInfo=StrategyInfo
+  'marketConfig:' marketConfig=MarketConfig
+  'tradeParameters:' tradeParameters+=TradeParameter*
   'candles:' candles+=Candle*
   'indicators:' indicators+=Indicator*
-  'signal_conditions:' signal_conditions=SignalConditions
+  'signalConditions:' signalConditions=SignalConditions
   'orders:' orders=Orders;
 
 StrategyInfo:
@@ -18,27 +18,27 @@ StrategyInfo:
 StrategyType: 'PMM' | 'Directional';
 
 MarketConfig:
-  'exchange:' exchange_name=STRING
-  'trading_pair:' trading_pair=STRING
-  'api_key:' api_key=INT
-  'api_secret:' api_secret=INT;
+  'exchangeName:' exchangeName=STRING
+  'tradingPair:' tradingPair=STRING
+  'apiKey:' apiKey=INT
+  'apiSecret:' apiSecret=INT;
 
-TradeParameter:
+TradeParameters:
   'name:' name=STRING
   'type:' type=TradeParameterType
   'value:' value=VALUE
   'description:' description=STRING
-  'default:' default_value=VALUE;
+  'defaultValue:' defaultValue=VALUE;
 
 TradeParameterType: 'int' | 'float' | 'str' | 'bool' | 'list' | 'dict';
 
-Candle:
+Candles:
   'connector:' connector=STRING
-  'trading_pair:' trading_pair=STRING
+  'tradingPair:' tradingPair=STRING
   'interval:' interval=STRING
-  'max_records:' max_records=INT;
+  'maxRecords:' maxRecords=INT;
 
-Indicator:
+Indicators:
   'name:' name=STRING
   parameters+=Parameter*;
 
@@ -46,9 +46,9 @@ Parameter:
   'key:' key=STRING
   'value:' value=VALUE;
 
-SignalConditions:
-  'buy_conditions:' buy_conditions+=Condition*
-  'sell_conditions:' sell_conditions+=Condition*;
+SignalCondition:
+  'buyConditions:' buyConditions+=Condition*
+  'sellConditions:' sellConditions+=Condition*;
 
 Condition:
   'indicator:' indicator=STRING
@@ -56,16 +56,16 @@ Condition:
   'value:' value=STRING;
 
 Orders:
-  'buy_order:' buy_orders+=Order*
-  'sell_order:' sell_orders+=Order*;
+  'buyOrder:' buyOrders+=Order*
+  'sellOrder:' sellOrders+=Order*;
 
 Order:
-  'is_maker:' is_maker=BOOL
-  'order_type:' order_type=OrderType;
+  'isMaker:' isMaker=BOOL
+  'orderType:' orderType=OrderType;
 
 OrderType: 'LIMIT' | 'MARKET';
 
-// Definitions for STRING and VALUE
+// Definitions for STRING, VALUE, INT, FLOAT, and BOOL
 STRING: /[a-zA-Z0-9_]+/;
 VALUE: /-?\d+(\.\d+)?/;
 INT: /\d+/;
