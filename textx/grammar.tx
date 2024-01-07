@@ -5,7 +5,7 @@ Strategy:
   'candles:' candles+=Candle*
   'indicators:' indicators+=Indicator*
   'signalConditions:' signalConditions=SignalConditions
-  'orders:' orders=Orders;
+  'orders:' orders=Order;
 
 StrategyInfo:
   'author:' author=STRING
@@ -23,7 +23,7 @@ MarketConfig:
   'apiKey:' apiKey=INT
   'apiSecret:' apiSecret=INT;
 
-TradeParameters:
+TradeParameter:
   'name:' name=STRING
   'type:' type=TradeParameterType
   'value:' value=VALUE
@@ -32,13 +32,13 @@ TradeParameters:
 
 TradeParameterType: 'int' | 'float' | 'str' | 'bool' | 'list' | 'dict';
 
-Candles:
+Candle:
   'connector:' connector=STRING
   'tradingPair:' tradingPair=STRING
   'interval:' interval=STRING
   'maxRecords:' maxRecords=INT;
 
-Indicators:
+Indicator:
   'name:' name=STRING
   parameters+=Parameter*;
 
@@ -46,7 +46,7 @@ Parameter:
   'key:' key=STRING
   'value:' value=VALUE;
 
-SignalCondition:
+SignalConditions:
   'buyConditions:' buyConditions+=Condition*
   'sellConditions:' sellConditions+=Condition*;
 
@@ -55,15 +55,13 @@ Condition:
   'operator:' operator=STRING
   'value:' value=STRING;
 
-Orders:
-  'buyOrder:' buyOrders+=Order*
-  'sellOrder:' sellOrders+=Order*;
-
 Order:
-  'isMaker:' isMaker=BOOL
-  'orderType:' orderType=OrderType;
+'isMaker:' isMaker=BOOL
+'orderType:' orderType=OrderType
+'tradeAction:' tradeAction=TradeAction?;
 
-OrderType: 'LIMIT' | 'MARKET';
+OrderType: 'Limit' | 'StopLimit' | 'Market';
+TradeAction: 'Buy' | 'Sell';
 
 // Definitions for STRING, VALUE, INT, FLOAT, and BOOL
 STRING: /[a-zA-Z0-9_]+/;
