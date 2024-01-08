@@ -4,7 +4,7 @@ Strategy:
   'tradeParameters:' tradeParameters+=TradeParameter*
   'candles:' candles+=Candle*
   'indicators:' indicators+=Indicator*
-  'signalConditions:' signalConditions=SignalConditions
+  'Condition:' signalConditions=Condition*
   'orders:' orders=Order;
 
 StrategyInfo:
@@ -51,12 +51,12 @@ SignalConditions:
   'sellConditions:' sellConditions+=Condition*;
 
 Condition:
-  'indicator:' indicator=STRING
-  'operator:' operator=STRING
-  'value:' value=STRING;
-  'conditionType:' conditionType+=ConditionType*
+'indicator:' indicator=STRING
+'operator:' operator=STRING
+'value:' value=FLOAT
+'conditionType:' conditionType=ConditionType;
 
-ConditionType: 'buyCondition' | 'sellCondition' 
+ConditionType: 'Buy' | 'Sell';
 
 Order:
 'isMaker:' isMaker=BOOL
