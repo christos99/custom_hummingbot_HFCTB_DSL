@@ -1,0 +1,55 @@
+// === Indicators === //
+Indicator:
+  RsiIndicator |
+  MacdIndicator |
+  BollingerIndicator |
+  SmaIndicator |
+  EmaIndicator |
+  CustomIndicator
+
+RsiIndicator:
+  'name: RSI' properties+=RsiProperty*
+
+MacdIndicator:
+  'name: MACD' properties+=MacdProperty*
+
+BollingerIndicator:
+  'name: Bollinger Bands' properties+=BollingerProperty*
+
+SmaIndicator:
+  'name: SMA' properties+=SmaProperty*
+
+EmaIndicator:
+  'name: EMA' properties+=EmaProperty*
+
+CustomIndicator:
+  'name:' name=STRING properties+=CustomProperty*
+
+// Properties for each indicator type
+RsiProperty:
+  'length:' length=STRING
+  'overboughtThreshold:' overboughtThreshold=STRING
+  'oversoldThreshold:' oversoldThreshold=STRING
+
+MacdProperty:
+  'fastLength:' fastLength=STRING
+  'slowLength:' slowLength=STRING
+  'signalSmoothing:' signalSmoothing=STRING
+
+BollingerProperty:
+  'length:' length=STRING
+  'stdDev:' stdDev=STRING
+
+SmaProperty:
+  'length:' length=STRING
+
+EmaProperty:
+  'length:' length=STRING
+
+CustomProperty:
+  'customName:' customName=STRING
+  customParameters+=CustomParameter*
+
+CustomParameter:
+  'paramName:' paramName=STRING
+  'paramValue:' paramValue=STRING
