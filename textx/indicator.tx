@@ -6,24 +6,31 @@ Indicator:
   SmaIndicator |
   EmaIndicator |
   CustomIndicator
+  ;
 
 RsiIndicator:
-  'name: RSI' properties+=RsiProperty*
+  'name: RSI' properties+=RsiProperty
+  ;
 
 MacdIndicator:
   'name: MACD' properties+=MacdProperty*
+  ;
 
 BollingerIndicator:
   'name: Bollinger Bands' properties+=BollingerProperty*
+  ;
 
 SmaIndicator:
   'name: SMA' properties+=SmaProperty*
+  ;
 
 EmaIndicator:
   'name: EMA' properties+=EmaProperty*
+  ;
 
 CustomIndicator:
   'name:' name=STRING properties+=CustomProperty*
+  ;
 
 // Properties for each indicator type
 RsiProperty:
