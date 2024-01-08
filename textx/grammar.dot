@@ -11,38 +11,34 @@
     edge[dir=black,arrowtail=empty]
 
 
-4394034368[ label="{Strategy|}"]
+5190895536[ label="{Strategy|}"]
 
-4394036288[ label="{StrategyInfo|author: STRING\ldescription: STRING\lname: STRING\ltype: StrategyType\lversion: FLOAT\llabels: list[STRING]\l}"]
+5190897456[ label="{StrategyInfo|author: STRING\ldescription: STRING\lname: STRING\ltype: StrategyType\lversion: FLOAT\llabels: list[STRING]\l}"]
 
-4394041664[ label="{MarketConfig|exchangeName: STRING\ltradingPair: STRING\lapiKey: INT\lapiSecret: INT\l}"]
+5190902832[ label="{MarketConfig|exchangeName: STRING\ltradingPair: STRING\lapiKey: INT\lapiSecret: INT\l}"]
 
-4394044352[ label="{TradeParameter|name: STRING\ltype: TradeParameterType\lvalue: VALUE\ldescription: STRING\ldefaultValue: VALUE\l}"]
+5190905520[ label="{TradeParameter|name: STRING\ltype: TradeParameterType\lvalue: VALUE\ldescription: STRING\ldefaultValue: VALUE\l}"]
 
-4394049728[ label="{Candle|connector: STRING\ltradingPair: STRING\linterval: STRING\lmaxRecords: INT\l}"]
+5190910896[ label="{Candle|connector: STRING\ltradingPair: STRING\linterval: STRING\lmaxRecords: INT\l}"]
 
-4394052416[ label="{Indicator|name: STRING\l}"]
+5190913584[ label="{Indicator|name: STRING\l}"]
 
-4394055104[ label="{Parameter|key: STRING\lvalue: VALUE\l}"]
+5190916272[ label="{Parameter|key: STRING\lvalue: VALUE\l}"]
 
-4394057792[ label="{SignalConditions|}"]
+5190918960[ label="{Condition|indicator: STRING\loperator: STRING\lvalue: FLOAT\lconditionType: ConditionType\l}"]
 
-4394060480[ label="{Condition|indicator: STRING\loperator: STRING\lvalue: FLOAT\lconditionType: ConditionType\l}"]
-
-4394065856[ label="{Order|isMaker: BOOL\lorderType: OrderType\ltradeAction: TradeAction\l}"]
+5190924336[ label="{Order|isMaker: BOOL\lorderType: OrderType\ltradeAction: TradeAction\l}"]
 
 
 
-4394034368 -> 4394036288[arrowtail=diamond, dir=both, headlabel="strategyInfo "]
-4394034368 -> 4394041664[arrowtail=diamond, dir=both, headlabel="marketConfig "]
-4394034368 -> 4394044352[arrowtail=diamond, dir=both, headlabel="tradeParameters 1..*"]
-4394034368 -> 4394049728[arrowtail=diamond, dir=both, headlabel="candles 1..*"]
-4394034368 -> 4394052416[arrowtail=diamond, dir=both, headlabel="indicators 1..*"]
-4394034368 -> 4394060480[arrowtail=diamond, dir=both, headlabel="signalConditions 0..*"]
-4394034368 -> 4394065856[arrowtail=diamond, dir=both, headlabel="orders "]
-4394052416 -> 4394055104[arrowtail=diamond, dir=both, headlabel="parameters 1..*"]
-4394057792 -> 4394060480[arrowtail=diamond, dir=both, headlabel="buyConditions 1..*"]
-4394057792 -> 4394060480[arrowtail=diamond, dir=both, headlabel="sellConditions 1..*"]
+5190895536 -> 5190897456[arrowtail=diamond, dir=both, headlabel="strategyInfo "]
+5190895536 -> 5190902832[arrowtail=diamond, dir=both, headlabel="marketConfig "]
+5190895536 -> 5190905520[arrowtail=diamond, dir=both, headlabel="tradeParameters 1..*"]
+5190895536 -> 5190910896[arrowtail=diamond, dir=both, headlabel="candles 1..*"]
+5190895536 -> 5190913584[arrowtail=diamond, dir=both, headlabel="indicators 1..*"]
+5190895536 -> 5190918960[arrowtail=diamond, dir=both, headlabel="signalConditions 0..*"]
+5190895536 -> 5190924336[arrowtail=diamond, dir=both, headlabel="orders "]
+5190913584 -> 5190916272[arrowtail=diamond, dir=both, headlabel="parameters 1..*"]
 match_rules [ shape=plaintext, label=< <table>
 	<tr>
 		<td><b>ConditionType</b></td><td>Buy|Sell</td>
