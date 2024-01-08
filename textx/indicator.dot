@@ -11,34 +11,34 @@
     edge[dir=black,arrowtail=empty]
 
 
-4848093872[ label="{*Indicator|}"]
+4989156464[ label="{*Indicator|}"]
 
-4848096560[ label="{RsiIndicator|length: STRING\loverboughtThreshold: STRING\loversoldThreshold: STRING\l}"]
+4989159760[ label="{RsiIndicator|length: STRING\loverboughtThreshold: STRING\loversoldThreshold: STRING\l}"]
 
-4848099248[ label="{MacdIndicator|fastLength: STRING\lslowLength: STRING\lsignalSmoothing: STRING\l}"]
+4989161680[ label="{MacdIndicator|fastLength: STRING\lslowLength: STRING\lsignalSmoothing: STRING\l}"]
 
-4848101936[ label="{BollingerIndicator|length: STRING\lstdDev: STRING\l}"]
+4989164368[ label="{BollingerIndicator|length: STRING\lstdDev: STRING\l}"]
 
-4848104624[ label="{SmaIndicator|length: STRING\l}"]
+4989167056[ label="{SmaIndicator|length: STRING\l}"]
 
-4848107312[ label="{EmaIndicator|length: STRING\l}"]
+4989169744[ label="{EmaIndicator|length: STRING\l}"]
 
-4848110000[ label="{CustomIndicator|}"]
+4989172432[ label="{CustomIndicator|}"]
 
-4848112688[ label="{CustomProperty|customName: STRING\l}"]
+4989175120[ label="{CustomProperty|customName: STRING\l}"]
 
-4848115376[ label="{CustomParameter|paramName: STRING\lparamValue: VALUE\l}"]
+4989177808[ label="{CustomParameter|paramName: STRING\lparamValue: VALUE\l}"]
 
 
 
-4848093872 -> 4848096560 [dir=back]
-4848093872 -> 4848099248 [dir=back]
-4848093872 -> 4848101936 [dir=back]
-4848093872 -> 4848104624 [dir=back]
-4848093872 -> 4848107312 [dir=back]
-4848093872 -> 4848110000 [dir=back]
-4848110000 -> 4848112688[arrowtail=diamond, dir=both, headlabel="customProperties 1..*"]
-4848112688 -> 4848115376[arrowtail=diamond, dir=both, headlabel="customParameters 1..*"]
+4989156464 -> 4989159760 [dir=back]
+4989156464 -> 4989161680 [dir=back]
+4989156464 -> 4989164368 [dir=back]
+4989156464 -> 4989167056 [dir=back]
+4989156464 -> 4989169744 [dir=back]
+4989156464 -> 4989172432 [dir=back]
+4989172432 -> 4989175120[arrowtail=diamond, dir=both, headlabel="customProperties 1..*"]
+4989175120 -> 4989177808[arrowtail=diamond, dir=both, headlabel="customParameters 1..*"]
 match_rules [ shape=plaintext, label=< <table>
 	<tr>
 		<td><b>VALUE</b></td><td>-?\d+(\.\d+)?</td>
