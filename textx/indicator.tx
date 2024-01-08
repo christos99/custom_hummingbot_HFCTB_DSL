@@ -9,53 +9,37 @@ Indicator:
   ;
 
 RsiIndicator:
-  'name: RSI' properties+=RsiProperty
-  ;
-
-MacdIndicator:
-  'name: MACD' properties+=MacdProperty*
-  ;
-
-BollingerIndicator:
-  'name: Bollinger Bands' properties+=BollingerProperty*
-  ;
-
-SmaIndicator:
-  'name: SMA' properties+=SmaProperty*
-  ;
-
-EmaIndicator:
-  'name: EMA' properties+=EmaProperty*
-  ;
-
-CustomIndicator:
-  'name:' name=STRING properties+=CustomProperty*
-  ;
-
-// Properties for each indicator type
-RsiProperty:
+  'name: RSI' 
   'length:' length=STRING
   'overboughtThreshold:' overboughtThreshold=STRING
   'oversoldThreshold:' oversoldThreshold=STRING
   ;
 
-MacdProperty:
+MacdIndicator:
+  'name: MACD' 
   'fastLength:' fastLength=STRING
   'slowLength:' slowLength=STRING
   'signalSmoothing:' signalSmoothing=STRING
   ;
 
-BollingerProperty:
+BollingerIndicator:
+  'name: Bollinger Bands' 
   'length:' length=STRING
   'stdDev:' stdDev=STRING
   ;
 
-SmaProperty:
+SmaIndicator:
+  'name: SMA' 
   'length:' length=STRING
   ;
 
-EmaProperty:
+EmaIndicator:
+  'name: EMA' 
   'length:' length=STRING
+  ;
+
+CustomIndicator: 
+  customProperties+=CustomProperty*
   ;
 
 CustomProperty:
@@ -64,8 +48,7 @@ CustomProperty:
   ;
 
 CustomParameter:
-  'paramName:' paramName=STRING
-  'paramValue:' paramValue=VALUE
+  'paramName:' paramName=STRING '=' 'paramValue:' paramValue=VALUE
   ;
 
 // Definitions for STRING, VALUE, INT, FLOAT, and BOOL
