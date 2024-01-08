@@ -37,29 +37,36 @@ RsiProperty:
   'length:' length=STRING
   'overboughtThreshold:' overboughtThreshold=STRING
   'oversoldThreshold:' oversoldThreshold=STRING
+  ;
 
 MacdProperty:
   'fastLength:' fastLength=STRING
   'slowLength:' slowLength=STRING
   'signalSmoothing:' signalSmoothing=STRING
+  ;
 
 BollingerProperty:
   'length:' length=STRING
   'stdDev:' stdDev=STRING
+  ;
 
 SmaProperty:
   'length:' length=STRING
+  ;
 
 EmaProperty:
   'length:' length=STRING
+  ;
 
 CustomProperty:
   'customName:' customName=STRING
   customParameters+=CustomParameter*
+  ;
 
 CustomParameter:
   'paramName:' paramName=STRING
   'paramValue:' paramValue=VALUE
+  ;
 
 // Definitions for STRING, VALUE, INT, FLOAT, and BOOL
 STRING: /[a-zA-Z0-9_]+/;

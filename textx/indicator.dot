@@ -1,0 +1,64 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4729365584[ label="{*Indicator|}"]
+
+4729367504[ label="{RsiIndicator|}"]
+
+4729370192[ label="{MacdIndicator|}"]
+
+4729372880[ label="{BollingerIndicator|}"]
+
+4729375568[ label="{SmaIndicator|}"]
+
+4729378256[ label="{EmaIndicator|}"]
+
+4729380944[ label="{CustomIndicator|name: STRING\l}"]
+
+4729383632[ label="{RsiProperty|length: STRING\loverboughtThreshold: STRING\loversoldThreshold: STRING\l}"]
+
+4729386320[ label="{MacdProperty|fastLength: STRING\lslowLength: STRING\lsignalSmoothing: STRING\l}"]
+
+4729389008[ label="{BollingerProperty|length: STRING\lstdDev: STRING\l}"]
+
+4729391696[ label="{SmaProperty|length: STRING\l}"]
+
+4729394384[ label="{EmaProperty|length: STRING\l}"]
+
+4729397072[ label="{CustomProperty|customName: STRING\l}"]
+
+4729399760[ label="{CustomParameter|paramName: STRING\lparamValue: VALUE\l}"]
+
+
+
+4729365584 -> 4729367504 [dir=back]
+4729365584 -> 4729370192 [dir=back]
+4729365584 -> 4729372880 [dir=back]
+4729365584 -> 4729375568 [dir=back]
+4729365584 -> 4729378256 [dir=back]
+4729365584 -> 4729380944 [dir=back]
+4729367504 -> 4729383632[arrowtail=diamond, dir=both, headlabel="properties 1..*"]
+4729370192 -> 4729386320[arrowtail=diamond, dir=both, headlabel="properties 1..*"]
+4729372880 -> 4729389008[arrowtail=diamond, dir=both, headlabel="properties 1..*"]
+4729375568 -> 4729391696[arrowtail=diamond, dir=both, headlabel="properties 1..*"]
+4729378256 -> 4729394384[arrowtail=diamond, dir=both, headlabel="properties 1..*"]
+4729380944 -> 4729397072[arrowtail=diamond, dir=both, headlabel="properties 1..*"]
+4729397072 -> 4729399760[arrowtail=diamond, dir=both, headlabel="customParameters 1..*"]
+match_rules [ shape=plaintext, label=< <table>
+	<tr>
+		<td><b>VALUE</b></td><td>-?\d+(\.\d+)?</td>
+	</tr>
+</table> >]
+
+
+}
