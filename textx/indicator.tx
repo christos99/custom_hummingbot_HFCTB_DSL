@@ -52,4 +52,11 @@ CustomProperty:
 
 CustomParameter:
   'paramName:' paramName=STRING
-  'paramValue:' paramValue=STRING
+  'paramValue:' paramValue=VALUE
+
+// Definitions for STRING, VALUE, INT, FLOAT, and BOOL
+STRING: /[a-zA-Z0-9_]+/;
+VALUE: /-?\d+(\.\d+)?/;
+INT: /\d+/;
+FLOAT: /-?\d+(\.\d+)?/;
+BOOL: /true|false/;
