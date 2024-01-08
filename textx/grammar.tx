@@ -4,8 +4,8 @@ Strategy:
   'tradeParameters:' tradeParameters+=TradeParameter*
   'candles:' candles+=Candle*
   'indicators:' indicators+=Indicator*
-  'Condition:' signalConditions=Condition*
-  'orders:' orders=Order*
+  'Condition:' signalConditions+=Condition*
+  'orders:' orders+=Order*;
 
 StrategyInfo:
   'author:' author=STRING
