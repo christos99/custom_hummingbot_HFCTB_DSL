@@ -1,6 +1,0 @@
-Strategy:
-  'name:' name=STRING
-  'type:' type=STRING
-  'description:' description=STRING;
-
-STRING: /[a-zA-Z0-9_]+/;

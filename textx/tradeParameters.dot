@@ -1,0 +1,70 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+5569539856[ label="{TradeParameters|}"]
+
+5569541776[ label="{DirectionalParameters|}"]
+
+5569544464[ label="{DirectionalOrderAmountUsd|value: FLOAT\l}"]
+
+5569547152[ label="{DirectionalLeverage|value: FLOAT\l}"]
+
+5569549840[ label="{DirectionalBidSpread|value: INT\l}"]
+
+5569552528[ label="{DirectionalAskSpread|value: INT\l}"]
+
+5569555216[ label="{DirectionalOrderRefreshTime|value: FLOAT\l}"]
+
+5569557904[ label="{DirectionalTrailingStopActivationDelta|value: INT\l}"]
+
+5569560592[ label="{DirectionalTrailingStopTrailingDelta|value: INT\l}"]
+
+5569563280[ label="{DirectionalPriceSource|value: STRING\l}"]
+
+5569565968[ label="{PmmParameters|}"]
+
+5569568656[ label="{PmmBidSpread|value: FLOAT\l}"]
+
+5569571344[ label="{PmmAskSpread|value: FLOAT\l}"]
+
+5569574032[ label="{PmmOrderRefreshTime|value: INT\l}"]
+
+5569576720[ label="{PmmCreateTimestamp|value: INT\l}"]
+
+5569579408[ label="{PmmOrderAmount|value: FLOAT\l}"]
+
+5569582096[ label="{PmmPriceSource|value: STRING\l}"]
+
+5569584784[ label="{CustomParameter|name: STRING\lvalue: FLOAT\ldescription: STRING\l}"]
+
+
+
+5569539856 -> 5569541776[arrowtail=diamond, dir=both, headlabel="directionalParams 0..*"]
+5569539856 -> 5569565968[arrowtail=diamond, dir=both, headlabel="pmmParams 0..*"]
+5569539856 -> 5569584784[arrowtail=diamond, dir=both, headlabel="customParams 0..*"]
+5569541776 -> 5569544464[arrowtail=diamond, dir=both, headlabel="orderAmountUsd "]
+5569541776 -> 5569547152[arrowtail=diamond, dir=both, headlabel="leverage "]
+5569541776 -> 5569549840[arrowtail=diamond, dir=both, headlabel="bidSpread "]
+5569541776 -> 5569552528[arrowtail=diamond, dir=both, headlabel="askSpread "]
+5569541776 -> 5569555216[arrowtail=diamond, dir=both, headlabel="orderRefreshTime "]
+5569541776 -> 5569557904[arrowtail=diamond, dir=both, headlabel="trailingStopActivationDelta "]
+5569541776 -> 5569560592[arrowtail=diamond, dir=both, headlabel="trailingStopTrailingDelta "]
+5569541776 -> 5569563280[arrowtail=diamond, dir=both, headlabel="priceSource "]
+5569565968 -> 5569568656[arrowtail=diamond, dir=both, headlabel="bidSpread "]
+5569565968 -> 5569571344[arrowtail=diamond, dir=both, headlabel="askSpread "]
+5569565968 -> 5569574032[arrowtail=diamond, dir=both, headlabel="orderRefreshTime "]
+5569565968 -> 5569576720[arrowtail=diamond, dir=both, headlabel="createTimestamp "]
+5569565968 -> 5569579408[arrowtail=diamond, dir=both, headlabel="orderAmount "]
+5569565968 -> 5569582096[arrowtail=diamond, dir=both, headlabel="priceSource "]
+
+}

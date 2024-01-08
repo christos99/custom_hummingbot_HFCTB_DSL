@@ -1,7 +1,7 @@
 TradeParameters:
-  'directionalParams:' directionalParams+=DirectionalParameters* |
-  'pmmParams:' pmmParams+=PmmParameters* |
-  'customParams:' customParams+=CustomParameter* 
+  'directionalParams:' directionalParams*=DirectionalParameters* 
+  'pmmParams:' pmmParams*=PmmParameters* 
+  'customParams:' customParams*=CustomParameter* 
   ;
 
 DirectionalParameters:
