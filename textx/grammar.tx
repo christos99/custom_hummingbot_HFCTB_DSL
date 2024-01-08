@@ -3,7 +3,7 @@ Strategy:
   'marketConfig:' marketConfig=MarketConfig
   'tradeParameters:' tradeParameters+=TradeParameter*
   'candles:' candles+=Candle*
-  'indicators:' indicators+=Indicator*
+  'indicators:' indicators=Indicator*
   'Condition:' signalConditions+=Condition*
   'orders:' orders+=Order*;
 
@@ -28,7 +28,6 @@ TradeParameter:
   'value:' value=VALUE
   'description:' description=STRING
   'defaultValue:' defaultValue=VALUE;
-
 
 Candle:
   'connector:' connector=STRING
