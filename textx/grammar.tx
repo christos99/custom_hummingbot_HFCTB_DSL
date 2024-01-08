@@ -25,12 +25,10 @@ MarketConfig:
 
 TradeParameter:
   'name:' name=STRING
-  'type:' type=TradeParameterType
   'value:' value=VALUE
   'description:' description=STRING
   'defaultValue:' defaultValue=VALUE;
 
-TradeParameterType: 'int' | 'float' | 'str' | 'bool' | 'list' | 'dict';
 
 Candle:
   'connector:' connector=STRING
