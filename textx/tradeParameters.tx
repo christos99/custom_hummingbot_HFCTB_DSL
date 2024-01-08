@@ -1,0 +1,64 @@
+TradeParameters:
+  directionalParams=DirectionalParameters
+  pmmParams=PmmParameters
+  customParams=CustomParameter
+
+DirectionalParameters:
+  orderAmountUsd=DirectionalOrderAmountUsd
+  leverage=DirectionalLeverage
+  bidSpread=DirectionalBidSpread
+  askSpread=DirectionalAskSpread
+  orderRefreshTime=DirectionalOrderRefreshTime
+  trailingStopActivationDelta=DirectionalTrailingStopActivationDelta
+  trailingStopTrailingDelta=DirectionalTrailingStopTrailingDelta
+  priceSource=DirectionalPriceSource
+
+DirectionalOrderAmountUsd:
+    'name: "order_amount_usd"' 'value:' value=FLOAT 'description: "The amount of the order"' 'default: 0.001'
+DirectionalLeverage:
+    'name: "leverage"' 'value:' value=FLOAT 'description: "Leverage of the order"' 'default: 0.001'
+DirectionalBidSpread:
+    'name: "bid_spread"' 'value:' value=INT 'description: "Bid spread for the order"' 'default: 0.001'
+DirectionalAskSpread:
+   'name: "ask_spread"' 'value:' value=INT 'description: "Ask spread for the order"' 'default: 0.001'
+DirectionalOrderRefreshTime:
+   'name: "order_refresh_time"' 'value:' value=FLOAT 'description: "Order refresh time"' 'default: 0.01'
+DirectionalTrailingStopActivationDelta:
+   'name: "trailing_stop_activation_delta"' 'value:' value=INT 'description: "Bid spread for the order"' 'default: 0'
+DirectionalTrailingStopTrailingDelta:
+   'name: "trailing_stop_trailing_delta"' 'value:' value=INT 'description: "Bid spread for the order"' 'default: 0'
+DirectionalPriceSource:
+   'name: "price_source"' 'value:' value=STRING 'description: "Source of price data for orders"' 'default: "MidPrice"'
+
+PmmParameters:
+  bidSpread=PmmBidSpread
+  askSpread=PmmAskSpread
+  orderRefreshTime=PmmOrderRefreshTime
+  createTimestamp=PmmCreateTimestamp
+  orderAmount=PmmOrderAmount
+  priceSource=PmmPriceSource
+
+PmmBidSpread:
+  'name: "bid_spread"' 'value:' value=FLOAT 'description: "Bid spread for the order"' 'default: 0.001'
+PmmAskSpread:
+  'name: "ask_spread"' 'value:' value=FLOAT 'description: "Leverage of the order"' 'default: 0.001'
+PmmOrderRefreshTime:
+    'name: "bid_spread"' 'value:' value=INT 'description: "Bid spread for the order"' 'default: 0.01'
+PmmCreateTimestamp:
+   'name: "ask_spread"' 'value:' value=INT 'description: "Initial timestamp for order creation"' 'default: 0'
+PmmOrderAmount:
+    'name: "order_amount_usd"' 'value:' value=FLOAT 'description: "The amount of the order"' 'default: 0.01'
+PmmPriceSource:
+   'name: "price_source"' 'value:' value=STRING 'description: "Source of price data for orders"' 'default:"MidPrice"'
+
+CustomParameter:
+  'name:' name=STRING 
+  'value:' value=FLOAT
+  'description:' description =STRING
+
+// Definitions for STRING, VALUE, INT, FLOAT, and BOOL
+STRING: /[a-zA-Z0-9_]+/;
+VALUE: /-?\d+(\.\d+)?/;
+INT: /\d+/;
+FLOAT: /-?\d+(\.\d+)?/;
+BOOL: /true|false/;
