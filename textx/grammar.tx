@@ -1,11 +1,11 @@
 Strategy:
   'strategyInfo:' strategyInfo=StrategyInfo
   'marketConfig:' marketConfig=MarketConfig
-  'tradeParameters:' tradeParameters+=TradeParameter*
-  'candles:' candles+=Candle*
-  'indicators:' indicators=Indicator*
-  'Condition:' signalConditions+=Condition*
-  'orders:' orders+=Order*;
+  'tradeParameters:' tradeParameters*=TradeParameter*
+  'candles:' candles*=Candle*
+  'indicators:' indicators*=Indicator*
+  'Condition:' signalConditions*=Condition*
+  'orders:' orders*=Order*;
 
 StrategyInfo:
   'author:' author=STRING
@@ -40,8 +40,9 @@ Indicator:
   parameters+=Parameter*;
 
 Parameter:
-  'key:' key=STRING
-  'value:' value=VALUE;
+  'key:' key=STRING ':' 'value:' value=VALUE
+  ;
+  
 
 Condition:
 'indicator:' indicator=STRING
