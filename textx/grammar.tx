@@ -46,10 +46,6 @@ Parameter:
   'key:' key=STRING
   'value:' value=VALUE;
 
-SignalConditions:
-  'buyConditions:' buyConditions+=Condition*
-  'sellConditions:' sellConditions+=Condition*;
-
 Condition:
 'indicator:' indicator=STRING
 'operator:' operator=STRING
