@@ -13,7 +13,7 @@ marketConfig:
   apiSecret: 67890
 
 tradeParameters:
-  directionalParams:
+  DirectionalParams:
     orderAmountUsd:
       name: "order_amount_usd"
       value: 1000.0

@@ -27,14 +27,12 @@ MarketConfig:
   'apiKey:' apiKey=INT
   'apiSecret:' apiSecret=INT;
 
-
 Candle:
   'connector:' connector=STRING
   'tradingPair:' tradingPair=STRING
   'interval:' interval=STRING
   'maxRecords:' maxRecords=INT;
 
-  
 Condition:
 'indicator:' indicator=STRING
 'operator:' operator=STRING
