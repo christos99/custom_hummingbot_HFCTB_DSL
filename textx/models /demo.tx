@@ -1,0 +1,50 @@
+strategyInfo:
+  author: "Jane Doe"
+  description: "Sample trading strategy model"
+  name: "MyStrategy"
+  type: Directional
+  version: 1.0
+  labels: ["experimental", "test"]
+
+marketConfig:
+  exchangeName: "NYSE"
+  tradingPair: "BTC-USD"
+  apiKey: 12345
+  apiSecret: 67890
+
+tradeParameters:
+  directionalParams:
+    orderAmountUsd:
+      name: "order_amount_usd"
+      value: 1000.0
+      description: "Amount in USD"
+      default: 500.0
+    leverage:
+      name: "leverage"
+      value: 2
+      description: "Leverage factor"
+      default: 1
+
+candles:
+  connector: "historicalData"
+  tradingPair: "BTC-USD"
+  interval: "1h"
+  maxRecords: 100
+
+indicators:
+  RsiIndicator:
+    name: RSI
+    length: "14"
+    overboughtThreshold: "70"
+    oversoldThreshold: "30"
+
+Condition:
+  indicator: "RSI"
+  operator: "<"
+  value: 30
+  conditionType: Buy
+
+orders:
+  isMaker: true
+  orderType: Limit
+  tradeAction: Buy
