@@ -1,7 +1,7 @@
 # Trading Strategy Configuration Grammar
 
 ## Overview
-This repository contains the TextX grammar definitions for configuring trading strategies, parameters, and indicators. It allows the definition of complex trading strategies using a Domain-Specific Language (DSL) crafted for ease of use and flexibility.
+This repository contains the TextX grammar definitions for configuring trading strategies, parameters, and indicators. It allows the definition of complex trading strategies using a Domain-Specific-Language (DSL) crafted for ease of use and flexibility.
 
 ## Files
 
