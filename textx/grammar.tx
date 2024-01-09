@@ -1,9 +1,13 @@
+import indicator
+import tradeParameters
+
+
 Strategy:
   'strategyInfo:' strategyInfo=StrategyInfo
   'marketConfig:' marketConfig=MarketConfig
-  'tradeParameters:' tradeParameters*=TradeParameter*
+  'tradeParameters:' tradeParameters*=TradeParameters*
   'candles:' candles*=Candle*
-  'indicators:' indicators*=Indicator*
+  'indicators:' indicator*=Indicator*
   'Condition:' signalConditions*=Condition*
   'orders:' orders*=Order*;
 
@@ -23,11 +27,6 @@ MarketConfig:
   'apiKey:' apiKey=INT
   'apiSecret:' apiSecret=INT;
 
-TradeParameter:
-  'name:' name=STRING
-  'value:' value=VALUE
-  'description:' description=STRING
-  'defaultValue:' defaultValue=VALUE;
 
 Candle:
   'connector:' connector=STRING
@@ -35,15 +34,7 @@ Candle:
   'interval:' interval=STRING
   'maxRecords:' maxRecords=INT;
 
-Indicator:
-  'name:' name=STRING
-  parameters+=Parameter*;
-
-Parameter:
-  'key:' key=STRING ':' 'value:' value=VALUE
-  ;
   
-
 Condition:
 'indicator:' indicator=STRING
 'operator:' operator=STRING

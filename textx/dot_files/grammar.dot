@@ -11,34 +11,106 @@
     edge[dir=black,arrowtail=empty]
 
 
-4863868272[ label="{Strategy|}"]
+4360315136[ label="{Strategy|}"]
 
-4863870192[ label="{StrategyInfo|author: STRING\ldescription: STRING\lname: STRING\ltype: StrategyType\lversion: FLOAT\llabels: list[STRING]\l}"]
+4360317824[ label="{StrategyInfo|author: STRING\ldescription: STRING\lname: STRING\ltype: StrategyType\lversion: FLOAT\llabels: list[STRING]\l}"]
 
-4863875568[ label="{MarketConfig|exchangeName: STRING\ltradingPair: STRING\lapiKey: INT\lapiSecret: INT\l}"]
+4360323200[ label="{MarketConfig|exchangeName: STRING\ltradingPair: STRING\lapiKey: INT\lapiSecret: INT\l}"]
 
-4863878256[ label="{TradeParameter|name: STRING\lvalue: VALUE\ldescription: STRING\ldefaultValue: VALUE\l}"]
+4360325888[ label="{Candle|connector: STRING\ltradingPair: STRING\linterval: STRING\lmaxRecords: INT\l}"]
 
-4863880944[ label="{Candle|connector: STRING\ltradingPair: STRING\linterval: STRING\lmaxRecords: INT\l}"]
+4360328576[ label="{Condition|indicator: STRING\loperator: STRING\lvalue: FLOAT\lconditionType: ConditionType\l}"]
 
-4863883632[ label="{Indicator|name: STRING\l}"]
+4360333952[ label="{Order|isMaker: BOOL\lorderType: OrderType\ltradeAction: TradeAction\l}"]
 
-4863886320[ label="{Parameter|key: STRING\lvalue: VALUE\l}"]
+5166612288[ label="{*Indicator|}"]
 
-4863889008[ label="{Condition|indicator: STRING\loperator: STRING\lvalue: FLOAT\lconditionType: ConditionType\l}"]
+5166783120[ label="{RsiIndicator|length: STRING\loverboughtThreshold: STRING\loversoldThreshold: STRING\l}"]
 
-4863894384[ label="{Order|isMaker: BOOL\lorderType: OrderType\ltradeAction: TradeAction\l}"]
+5166785808[ label="{MacdIndicator|fastLength: STRING\lslowLength: STRING\lsignalSmoothing: STRING\l}"]
+
+5166788496[ label="{BollingerIndicator|length: STRING\lstdDev: STRING\l}"]
+
+5166791184[ label="{SmaIndicator|length: STRING\l}"]
+
+5166793872[ label="{EmaIndicator|length: STRING\l}"]
+
+5166796560[ label="{CustomIndicator|}"]
+
+5166799248[ label="{CustomProperty|customName: STRING\l}"]
+
+5166801936[ label="{CustomParameter|paramName: STRING\lparamValue: VALUE\l}"]
+
+4360254272[ label="{TradeParameters|}"]
+
+4360256192[ label="{DirectionalParameters|}"]
+
+4360258880[ label="{DirectionalOrderAmountUsd|value: FLOAT\l}"]
+
+4360261568[ label="{DirectionalLeverage|value: FLOAT\l}"]
+
+4360264256[ label="{DirectionalBidSpread|value: INT\l}"]
+
+4360266944[ label="{DirectionalAskSpread|value: INT\l}"]
+
+4360269632[ label="{DirectionalOrderRefreshTime|value: FLOAT\l}"]
+
+4360272320[ label="{DirectionalTrailingStopActivationDelta|value: INT\l}"]
+
+4360275008[ label="{DirectionalTrailingStopTrailingDelta|value: INT\l}"]
+
+4360277696[ label="{DirectionalPriceSource|value: STRING\l}"]
+
+4360280384[ label="{PmmParameters|}"]
+
+4360283072[ label="{PmmBidSpread|value: FLOAT\l}"]
+
+4360285760[ label="{PmmAskSpread|value: FLOAT\l}"]
+
+4360288448[ label="{PmmOrderRefreshTime|value: INT\l}"]
+
+4360291136[ label="{PmmCreateTimestamp|value: INT\l}"]
+
+4360293824[ label="{PmmOrderAmount|value: FLOAT\l}"]
+
+4360296512[ label="{PmmPriceSource|value: STRING\l}"]
+
+4360299200[ label="{CustomParameter|name: STRING\lvalue: FLOAT\ldescription: STRING\l}"]
 
 
 
-4863868272 -> 4863870192[arrowtail=diamond, dir=both, headlabel="strategyInfo "]
-4863868272 -> 4863875568[arrowtail=diamond, dir=both, headlabel="marketConfig "]
-4863868272 -> 4863878256[arrowtail=diamond, dir=both, headlabel="tradeParameters 0..*"]
-4863868272 -> 4863880944[arrowtail=diamond, dir=both, headlabel="candles 0..*"]
-4863868272 -> 4863883632[arrowtail=diamond, dir=both, headlabel="indicators 0..*"]
-4863868272 -> 4863889008[arrowtail=diamond, dir=both, headlabel="signalConditions 0..*"]
-4863868272 -> 4863894384[arrowtail=diamond, dir=both, headlabel="orders 0..*"]
-4863883632 -> 4863886320[arrowtail=diamond, dir=both, headlabel="parameters 1..*"]
+4360315136 -> 4360317824[arrowtail=diamond, dir=both, headlabel="strategyInfo "]
+4360315136 -> 4360323200[arrowtail=diamond, dir=both, headlabel="marketConfig "]
+4360315136 -> 4360254272[arrowtail=diamond, dir=both, headlabel="tradeParameters 0..*"]
+4360315136 -> 4360325888[arrowtail=diamond, dir=both, headlabel="candles 0..*"]
+4360315136 -> 5166612288[arrowtail=diamond, dir=both, headlabel="indicator 0..*"]
+4360315136 -> 4360328576[arrowtail=diamond, dir=both, headlabel="signalConditions 0..*"]
+4360315136 -> 4360333952[arrowtail=diamond, dir=both, headlabel="orders 0..*"]
+5166612288 -> 5166783120 [dir=back]
+5166612288 -> 5166785808 [dir=back]
+5166612288 -> 5166788496 [dir=back]
+5166612288 -> 5166791184 [dir=back]
+5166612288 -> 5166793872 [dir=back]
+5166612288 -> 5166796560 [dir=back]
+5166796560 -> 5166799248[arrowtail=diamond, dir=both, headlabel="customProperties 1..*"]
+5166799248 -> 5166801936[arrowtail=diamond, dir=both, headlabel="customParameters 1..*"]
+4360254272 -> 4360256192[arrowtail=diamond, dir=both, headlabel="directionalParams 0..*"]
+4360254272 -> 4360280384[arrowtail=diamond, dir=both, headlabel="pmmParams 0..*"]
+4360254272 -> 4360299200[arrowtail=diamond, dir=both, headlabel="customParams 0..*"]
+4360256192 -> 4360258880[arrowtail=diamond, dir=both, headlabel="orderAmountUsd "]
+4360256192 -> 4360261568[arrowtail=diamond, dir=both, headlabel="leverage "]
+4360256192 -> 4360264256[arrowtail=diamond, dir=both, headlabel="bidSpread "]
+4360256192 -> 4360266944[arrowtail=diamond, dir=both, headlabel="askSpread "]
+4360256192 -> 4360269632[arrowtail=diamond, dir=both, headlabel="orderRefreshTime "]
+4360256192 -> 4360272320[arrowtail=diamond, dir=both, headlabel="trailingStopActivationDelta "]
+4360256192 -> 4360275008[arrowtail=diamond, dir=both, headlabel="trailingStopTrailingDelta "]
+4360256192 -> 4360277696[arrowtail=diamond, dir=both, headlabel="priceSource "]
+4360280384 -> 4360283072[arrowtail=diamond, dir=both, headlabel="bidSpread "]
+4360280384 -> 4360285760[arrowtail=diamond, dir=both, headlabel="askSpread "]
+4360280384 -> 4360288448[arrowtail=diamond, dir=both, headlabel="orderRefreshTime "]
+4360280384 -> 4360291136[arrowtail=diamond, dir=both, headlabel="createTimestamp "]
+4360280384 -> 4360293824[arrowtail=diamond, dir=both, headlabel="orderAmount "]
+4360280384 -> 4360296512[arrowtail=diamond, dir=both, headlabel="priceSource "]
 match_rules [ shape=plaintext, label=< <table>
 	<tr>
 		<td><b>ConditionType</b></td><td>Buy|Sell</td>
@@ -51,6 +123,9 @@ match_rules [ shape=plaintext, label=< <table>
 	</tr>
 	<tr>
 		<td><b>TradeAction</b></td><td>Buy|Sell</td>
+	</tr>
+	<tr>
+		<td><b>VALUE</b></td><td>-?\d+(\.\d+)?</td>
 	</tr>
 	<tr>
 		<td><b>VALUE</b></td><td>-?\d+(\.\d+)?</td>
