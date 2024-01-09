@@ -1,23 +1,30 @@
 # Trading Strategy Configuration Grammar
 
 ## Overview
-This repository contains the TextX grammar definitions for configuring trading strategies, parameters, and indicators. It allows the definition of complex trading strategies using a Domain-Specific-Language (DSL) crafted for ease of use and flexibility.
+This repository contains TextX grammar definitions to configure complex trading strategies. It uses a Domain-Specific Language (DSL) for ease and flexibility, allowing the definition of strategies, parameters, indicators, and more.
 
-## Files
+## Files and Structure
 
 ### `grammar.tx`
-Defines the core structure for a trading strategy, including authorship, market configuration, parameters for trade, candles, indicators, conditions for trading signals, and order specifications.
+- Central file defining the core structure of a trading strategy.
+- Includes strategy information, market configuration, candles, conditions, orders.
+- Uses imports to integrate `tradeParameters` and `indicators`.
 
 ### `tradeParameters.tx`
-Specifies the trading parameters with options for directional, PMM (Pure Market Making), and custom parameters. Each parameter is detailed with its name, value, description, and default setting.
+- Modular file, imported by `grammar.tx`.
+- Specifies trading parameters with options for directional, PMM (Pure Market Making), and custom parameters.
+- Details each parameter including name, value, description, and default setting.
 
 ### `indicators.tx`
-Describes various technical indicators used in trading strategies, such as RSI, MACD, Bollinger Bands, SMA, EMA, and custom indicators. It includes properties like length, thresholds, and smoothing factors.
+- Another modular file, imported by `grammar.tx`.
+- Describes technical indicators like RSI, MACD, Bollinger Bands, SMA, EMA, plus custom indicators.
+- Details indicator-specific properties such as length, thresholds, and smoothing.
 
-## Grammar Structure
-The grammar allows for a flexible composition of trading strategies, where users can mix predefined parameter sets or define their own. Conditions and orders are specified to create a comprehensive strategy.
+## Usage
+- Define trading strategies by creating a model file following the syntax and structure outlined in `grammar.tx`.
+- `grammar.tx` integrates and extends the rules from `tradeParameters.tx` and `indicators.tx`.
 
 ## Customization
-Users can extend the predefined parameters and indicators by adding their custom configurations as needed.
+- Users can mix predefined parameter sets or define custom configurations to create comprehensive trading strategies.
 
-For more information on how to use these grammar files to define your trading strategies, refer to the detailed documentation within each file.
+Refer to the detailed documentation within each file for more information on using these grammar files to define trading strategies.
