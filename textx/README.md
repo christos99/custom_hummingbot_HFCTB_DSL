@@ -1,30 +1,42 @@
-# Trading Strategy Configuration Grammar
+# Strategy Configuration DSL
 
 ## Overview
-This repository contains TextX grammar definitions to configure complex trading strategies. It uses a Domain-Specific Language (DSL) for ease and flexibility, allowing the definition of strategies, parameters, indicators, and more.
+This repository hosts the `strategy.tx`, a TextX grammar file for defining comprehensive trading strategies. It utilizes a Domain-Specific Language (DSL) for creating detailed and flexible trading strategies.
 
-## Files and Structure
+## File Description
 
-### `grammar.tx`
-- Central file defining the core structure of a trading strategy.
-- Includes strategy information, market configuration, candles, conditions, orders.
-- Uses imports to integrate `tradeParameters` and `indicators`.
+### `strategy.tx`
+- **Main Grammar File**: Integrates various components of a trading strategy.
+- **Imports**: Includes `indicator` and `tradeParameters` for extended functionality.
+- **Sections**:
+  - `StrategyInfo`: Authorship and metadata about the strategy.
+  - `MarketConfig`: Configuration for market-related parameters.
+  - `Candles`: Definitions for candlestick patterns in trading.
+  - `Indicators`: Technical indicators for strategy, imported from `indicator`.
+  - `Conditions`: Conditions under which trades should be executed.
+  - `Orders`: Order types and related actions.
+
+### `indicator.tx`
+- Defines a variety of technical indicators used in trading strategies.
+- Includes indicators such as RSI, MACD, Bollinger Bands, SMA, EMA, and customizable indicators.
 
 ### `tradeParameters.tx`
-- Modular file, imported by `grammar.tx`.
-- Specifies trading parameters with options for directional, PMM (Pure Market Making), and custom parameters.
-- Details each parameter including name, value, description, and default setting.
+- Specifies the trading parameters for different strategies like directional, PMM (Pure Market Making), and custom parameters.
+- Details each parameter with attributes like name, value, description, and default settings.
 
-### `indicators.tx`
-- Another modular file, imported by `grammar.tx`.
-- Describes technical indicators like RSI, MACD, Bollinger Bands, SMA, EMA, plus custom indicators.
-- Details indicator-specific properties such as length, thresholds, and smoothing.
+### Modular Structure
+- **Modularity**: Facilitates easy updates and maintenance.
+- **Reusability**: Shared components are reused across different strategy definitions.
 
 ## Usage
-- Define trading strategies by creating a model file following the syntax and structure outlined in `grammar.tx`.
-- `grammar.tx` integrates and extends the rules from `tradeParameters.tx` and `indicators.tx`.
+To define a trading strategy:
+1. Create a new text file following the grammar specified in `strategy.tx`.
+2. Define each section with relevant details as per your strategy requirements.
 
-## Customization
-- Users can mix predefined parameter sets or define custom configurations to create comprehensive trading strategies.
+Refer to each section's specific syntax and rules in `strategy.tx` for accurate strategy modeling.
 
-Refer to the detailed documentation within each file for more information on using these grammar files to define trading strategies.
+## Extensions
+- Customize and extend the strategy by adding new rules or modifying existing ones in the grammar files.
+- Additional modules can be integrated by following the import pattern demonstrated in `strategy.tx`.
+
+For detailed grammar syntax and rules, see the contents of `strategy.tx`, `indicator.tx`, and `tradeParameters.tx`.
