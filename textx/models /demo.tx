@@ -1,35 +1,65 @@
 strategyInfo:
-  author: "Jane Doe"
-  description: "Sample trading strategy model"
-  name: "MyStrategy"
-  type: Directional
+  author: "CryptoTrader"
+  description: "RSI-based strategy for ETH-USDT on Binance Perpetual."
+  name: "RSI_Strategy"
+  type: PMM
   version: 1.0
-  labels: ["experimental", "test"]
+  labels: ["crypto", "ETH-USDT", "binance"]
 
 marketConfig:
-  exchangeName: "NYSE"
-  tradingPair: "BTC-USD"
-  apiKey: 12345
-  apiSecret: 67890
+  exchangeName: "binance_perpetual"
+  tradingPair: "ETH-USDT"
+  apiKey: "your_api_key"
+  apiSecret: "your_api_secret"
 
 tradeParameters:
-  DirectionalParams:
+  directionalParams:
     orderAmountUsd:
       name: "order_amount_usd"
-      value: 1000.0
-      description: "Amount in USD"
-      default: 500.0
+      value: 40
+      description: "Order amount in USD"
+      default: 40
     leverage:
       name: "leverage"
-      value: 2
-      description: "Leverage factor"
-      default: 1
+      value: 10
+      description: "Leverage for the trade"
+      default: 10
+    bidSpread:
+      name: "bid_spread"
+      value: 10
+      description: "Bid spread percentage"
+      default: 10
+    askSpread:
+      name: "ask_spread"
+      value: 10
+      description: "Ask spread percentage"
+      default: 10
+    orderRefreshTime:
+      name: "order_refresh_time"
+      value: 10
+      description: "Time in seconds to refresh orders"
+      default: 10
+    trailingStopActivationDelta:
+      name: "trailing_stop_activation_delta"
+      value: 0.004
+      description: "Activation delta for trailing stop"
+      default: 0.004
+    trailingStopTrailingDelta:
+      name: "trailing_stop_trailing_delta"
+      value: 0.001
+      description: "Trailing delta for trailing stop"
+      default: 0.001
+    priceSource:
+      name: "price_source"
+      value: "MidPrice"
+      description: "Source of price data for orders"
+      default: "MidPrice"
 
 candles:
-  connector: "historicalData"
-  tradingPair: "BTC-USD"
-  interval: "1h"
-  maxRecords: 100
+  connector: "binance_perpetual"
+  tradingPair: "ETH-USDT"
+  interval: "3m"
+  maxRecords: 1000
 
 indicators:
   RsiIndicator:
@@ -38,13 +68,21 @@ indicators:
     overboughtThreshold: "70"
     oversoldThreshold: "30"
 
-Condition:
-  indicator: "RSI"
-  operator: "<"
-  value: 30
-  conditionType: Buy
+signalConditions:
+  - indicator: "RSI"
+    operator: "<"
+    value: 30
+    conditionType: Buy
+  - indicator: "RSI"
+    operator: ">"
+    value: 70
+    conditionType: Sell
 
 orders:
-  isMaker: true
-  orderType: Limit
-  tradeAction: Buy
+  buyOrder:
+    isMaker: True
+    orderType: Limit
+  sellOrder:
+    isMaker: False
+    orderType: Market
+
