@@ -1,88 +1,77 @@
 strategyInfo:
-  author: "CryptoTrader"
-  description: "RSI-based strategy for ETH-USDT on Binance Perpetual."
-  name: "RSI_Strategy"
-  type: PMM
-  version: 1.0
-  labels: ["crypto", "ETH-USDT", "binance"]
+  author "John Doe"
+  description "PMM strategy for BTC-USDT with RSI and MACD indicators."
+  name "BTC_USDT_PMM"
+  type PMM
+  version 1.2
+  labels ["crypto", "BTC-USDT", "high-frequency"]
 
 marketConfig:
-  exchangeName: "binance_perpetual"
-  tradingPair: "ETH-USDT"
-  apiKey: "your_api_key"
-  apiSecret: "your_api_secret"
+  exchangeName "binance"
+  tradingPair "BTC-USDT"
+  apiKey "your_binance_api_key"
+  apiSecret "your_binance_api_secret"
 
 tradeParameters:
   directionalParams:
     orderAmountUsd:
-      name: "order_amount_usd"
-      value: 40
-      description: "Order amount in USD"
-      default: 40
+      name "order_amount_usd"
+      value 100
+      description "Order amount in USDT"
+      default 100
     leverage:
-      name: "leverage"
-      value: 10
-      description: "Leverage for the trade"
-      default: 10
+      name "leverage"
+      value 5
+      description "Leverage for trade"
+      default 5
     bidSpread:
-      name: "bid_spread"
-      value: 10
-      description: "Bid spread percentage"
-      default: 10
+      name "bid_spread"
+      value 0.5
+      description "Bid spread percentage"
+      default 0.5
     askSpread:
-      name: "ask_spread"
-      value: 10
-      description: "Ask spread percentage"
-      default: 10
+      name "ask_spread"
+      value 0.5
+      description "Ask spread percentage"
+      default 0.5
     orderRefreshTime:
-      name: "order_refresh_time"
-      value: 10
-      description: "Time in seconds to refresh orders"
-      default: 10
-    trailingStopActivationDelta:
-      name: "trailing_stop_activation_delta"
-      value: 0.004
-      description: "Activation delta for trailing stop"
-      default: 0.004
-    trailingStopTrailingDelta:
-      name: "trailing_stop_trailing_delta"
-      value: 0.001
-      description: "Trailing delta for trailing stop"
-      default: 0.001
-    priceSource:
-      name: "price_source"
-      value: "MidPrice"
-      description: "Source of price data for orders"
-      default: "MidPrice"
+      name "order_refresh_time"
+      value 30
+      description "Order refresh time in seconds"
+      default 30
 
 candles:
-  connector: "binance_perpetual"
-  tradingPair: "ETH-USDT"
-  interval: "3m"
-  maxRecords: 1000
+  connector "binance"
+  tradingPair "BTC-USDT"
+  interval "5m"
+  maxRecords 500
 
 indicators:
   RsiIndicator:
-    name: RSI
-    length: "14"
-    overboughtThreshold: "70"
-    oversoldThreshold: "30"
+    name RSI
+    length "14"
+    overboughtThreshold "70"
+    oversoldThreshold "30"
+  MacdIndicator:
+    name MACD
+    fastLength "12"
+    slowLength "26"
+    signalSmoothing "9"
 
 signalConditions:
-  - indicator: "RSI"
-    operator: "<"
-    value: 30
-    conditionType: Buy
-  - indicator: "RSI"
-    operator: ">"
-    value: 70
-    conditionType: Sell
+  - indicator "RSI"
+    operator "<"
+    value 30
+    conditionType Buy
+  - indicator "RSI"
+    operator ">"
+    value 70
+    conditionType Sell
 
 orders:
   buyOrder:
-    isMaker: True
-    orderType: Limit
+    isMaker True
+    orderType Limit
   sellOrder:
-    isMaker: False
-    orderType: Market
-
+    isMaker True
+    orderType Limit
