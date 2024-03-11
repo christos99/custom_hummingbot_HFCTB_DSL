@@ -1,36 +1,36 @@
 // === Indicators === //
 Indicator:
-  RsiIndicator |
-  MacdIndicator |
-  BollingerIndicator |
-  SmaIndicator |
-  EmaIndicator |
-  CustomIndicator
-  ;
+  ("rsi_indicator:" RsiIndicator)?
+  ("macd_indicator:" MacdIndicator)?
+  ("bollinger_indicator:" BollingerIndicator)?
+  ("sma_indicator:" SmaIndicator)?
+  ("ema_indicator:" EmaIndicator)?
+  ("custom_indicator:" CustomIndicator)?;
+
 
 RsiIndicator:
   'name: RSI' 
-  'length:' length=STRING
-  'overboughtThreshold:' overboughtThreshold=STRING
-  'oversoldThreshold:' oversoldThreshold=STRING
+  'length:' length=INT
+  'overboughtThreshold:' overboughtThreshold=INT
+  'oversoldThreshold:' oversoldThreshold=INT
   ;
 
 MacdIndicator:
   'name: MACD' 
-  'fastLength:' fastLength=STRING
-  'slowLength:' slowLength=STRING
-  'signalSmoothing:' signalSmoothing=STRING
+  'fastLength:' fastLength=INT
+  'slowLength:' slowLength=INT
+  'signalSmoothing:' signalSmoothing=INT
   ;
 
 BollingerIndicator:
   'name: Bollinger Bands' 
-  'length:' length=STRING
+  'length:' length=INT
   'stdDev:' stdDev=STRING
   ;
 
 SmaIndicator:
   'name: SMA' 
-  'length:' length=STRING
+  'length:' length=INT
   ;
 
 EmaIndicator:
@@ -52,7 +52,6 @@ CustomParameter:
   ;
 
 // Definitions for STRING, VALUE, INT, FLOAT, and BOOL
-STRING: /[a-zA-Z0-9_]+/;
 VALUE: /-?\d+(\.\d+)?/;
 INT: /\d+/;
 FLOAT: /-?\d+(\.\d+)?/;

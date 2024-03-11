@@ -1,0 +1,47 @@
+strategyInfo:
+ name: "SimplePMM"
+ type:PMM
+ version:1.0
+ labels:"PMM"
+
+marketConfig:
+ exchangeName: "kucoin_paper_trade"
+ tradingPair: "ETH-USDT"
+ apiKey: 123456  
+ apiSecret: "your_api_secret"
+
+tradeParameters:
+ PmmParams:
+    bid_spread:
+        value: 0.001
+        description: "The percentage spread above the market price for placing buy orders."
+        default: 0.001  
+    ask_spread:
+        value: 0.001
+        description: "The percentage spread below the market price for placing sell orders."
+        default: 0.001
+    order_refresh_time:
+        value: 15
+        description: "Time in seconds after which orders are refreshed."
+        default: 15
+    create_timestamp:
+        value: 0
+        description: "Initial timestamp for the creation of orders."
+        default: 0
+    order_amount:
+        value: 0.01
+        description: "The amount of the asset to trade per order."
+        default: 0.01    
+    price_source:
+        value: "MidPrice"
+        description: "The price source used for order pricing."
+        default: "MidPrice"
+
+candles:
+ connector: "kucoin_paper_trade"
+ tradingPair: "ETH-USDT"
+ interval: "1m"
+ maxRecords: 100
+
+
+

@@ -1,0 +1,41 @@
+
+    digraph textX {
+        graph [rankdir=LR, splines=ortho];
+        node [shape=box, style=filled, fillcolor=white];
+        edge [minlen=1];
+        nodesep = 0.3;
+
+
+4346251920 -> 4331177040 [label="strategyInfo" arrowtail=diamond dir=both]
+4331177040[label="{RSI_Strategy:StrategyInfo|+author:str=''\l+description:str=''\l+type:str='Directional'\l+version:float=1.0\l+labels:list=['RSI']\l}"]
+4346251920 -> 4346307280 [label="marketConfig" arrowtail=diamond dir=both]
+4346307280[label="{:MarketConfig|+exchangeName:str='binance_perpetual'\l+tradingPair:str='ETH-USDT'\l+apiKey:int=123456\l+apiSecret:str='your_api_secret'\l}"]
+4346251920 -> 4338987792 [label="candles:0" arrowtail=diamond dir=both]
+4338987792[label="{:Candle|+connector:str='binance_perpetual'\l+tradingPair:str='ETH-USDT'\l+interval:str='3m'\l+maxRecords:int=1000\l}"]
+4346251920 -> 4346254544 [label="tradeParameters:0" arrowtail=diamond dir=both]
+4346254544 -> 4346254864 [label="directionalParams" arrowtail=diamond dir=both]
+4346254864 -> 4335082064 [label="orderAmountUsd" arrowtail=diamond dir=both]
+4335082064[label="{:DirectionalOrderAmountUsd|+value:float=40.0\l+description:str='The amount of USD to...'\l+default:float=40.0\l}"]
+4346254864 -> 4346310416 [label="leverage" arrowtail=diamond dir=both]
+4346310416[label="{:DirectionalLeverage|+value:float=10.0\l+description:str='Leverage to apply on...'\l+default:float=0.0\l}"]
+4346254864 -> 4332477072 [label="bidSpread" arrowtail=diamond dir=both]
+4332477072[label="{:DirectionalBidSpread|+value:float=0.1\l+description:str='The spread percentag...'\l+default:float=0.0\l}"]
+4346254864 -> 4346252304 [label="askSpread" arrowtail=diamond dir=both]
+4346252304[label="{:DirectionalAskSpread|+value:float=0.1\l+description:str='The spread percentag...'\l+default:float=0.0\l}"]
+4346254864 -> 4346257488 [label="orderRefreshTime" arrowtail=diamond dir=both]
+4346257488[label="{:DirectionalOrderRefreshTime|+value:float=10.0\l+description:str='Time in seconds to r...'\l+default:float=0.0\l}"]
+4346254864[label="{:DirectionalParameters|}"]
+4346254544[label="{:TradeParameters|}"]
+4346251920 -> 4346260688 [label="indicator:0" arrowtail=diamond dir=both]
+4346260688[label="{:RsiIndicator|+length:int=14\l+overboughtThreshold:int=70\l+oversoldThreshold:int=30\l}"]
+4346251920 -> 4346084112 [label="signalConditions:0" arrowtail=diamond dir=both]
+4346084112[label="{:Condition|+indicator:str='RSI'\l+operator:str='\<'\l+value:float=30.0\l+conditionType:str='Buy'\l}"]
+4346251920 -> 4346378320 [label="signalConditions:1" arrowtail=diamond dir=both]
+4346378320[label="{:Condition|+indicator:str='RSI'\l+operator:str='\>'\l+value:float=70.0\l+conditionType:str='Sell'\l}"]
+4346251920 -> 4346262544 [label="orders:0" arrowtail=diamond dir=both]
+4346262544[label="{:Order|+isMaker:bool=True\l+orderType:str='Limit'\l+tradeAction:str='Buy'\l}"]
+4346251920 -> 4346371984 [label="orders:1" arrowtail=diamond dir=both]
+4346371984[label="{:Order|+isMaker:bool=True\l+orderType:str='Limit'\l+tradeAction:str='Sell'\l}"]
+4346251920[label="{:Strategy|}"]
+
+}

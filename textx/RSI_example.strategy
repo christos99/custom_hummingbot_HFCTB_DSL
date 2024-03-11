@@ -1,0 +1,62 @@
+strategyInfo:
+ name:"RSI_Strategy"
+ type:Directional
+ version:1.0
+ labels:"RSI"
+
+marketConfig:
+ exchangeName: "binance_perpetual"
+ tradingPair: "ETH-USDT"
+ apiKey: 123456  
+ apiSecret: "your_api_secret"  
+
+candles:
+ connector: "binance_perpetual"
+ tradingPair: "ETH-USDT"
+ interval: "3m"
+ maxRecords: 1000
+
+tradeParameters:
+ directionalParams:
+   order_amount_usd:
+     value: 40
+     description: "The amount of USD to use for each order"
+     default: 40
+   leverage:
+     value: 10
+     description: "Leverage to apply on the trades"
+   bid_spread:
+     value: 0.1
+     description: "The spread percentage for bid orders"
+   ask_spread:
+     value: 0.1
+     description: "The spread percentage for ask orders"
+   order_refresh_time:
+     value: 10
+     description: "Time in seconds to refresh orders"
+
+indicators:
+ rsi_indicator:
+   name: RSI
+   length: 14
+   overboughtThreshold: 70
+   oversoldThreshold: 30
+
+
+Condition:
+ indicator: "RSI"
+ operator: "<"
+ value: 30
+ conditionType: Buy
+ indicator: "RSI"
+ operator: ">"
+ value: 70
+ conditionType: Sell
+
+orders:
+ isMaker: true
+ orderType: Limit
+ tradeAction: Buy
+ isMaker: true
+ orderType: Limit
+ tradeAction: Sell

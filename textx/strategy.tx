@@ -5,15 +5,15 @@ import tradeParameters
 Strategy:
   'strategyInfo:' strategyInfo=StrategyInfo
   'marketConfig:' marketConfig=MarketConfig
-  'tradeParameters:' tradeParameters*=TradeParameters*
-  'candles:' candles*=Candle*
-  'indicators:' indicator*=Indicator*
-  'Condition:' signalConditions*=Condition*
-  'orders:' orders*=Order*;
+  ('tradeParameters:' tradeParameters*=TradeParameters*)?
+  ('candles:' candles*=Candle*)?
+  ('indicators:' indicator*=Indicator*)?
+  ('Condition:' signalConditions*=Condition*)?
+  ('orders:' orders*=Order*)?;
 
 StrategyInfo:
-  'author:' author=STRING
-  'description:' description=STRING
+  ('author:' author=STRING)?
+  ('description:' description=STRING)?
   'name:' name=STRING
   'type:' type=StrategyType
   'version:' version=FLOAT
@@ -25,7 +25,8 @@ MarketConfig:
   'exchangeName:' exchangeName=STRING
   'tradingPair:' tradingPair=STRING
   'apiKey:' apiKey=INT
-  'apiSecret:' apiSecret=INT;
+  'apiSecret:' apiSecret=STRING;
+
 
 Candle:
   'connector:' connector=STRING
@@ -33,6 +34,7 @@ Candle:
   'interval:' interval=STRING
   'maxRecords:' maxRecords=INT;
 
+  
 Condition:
 'indicator:' indicator=STRING
 'operator:' operator=STRING
@@ -50,7 +52,7 @@ OrderType: 'Limit' | 'StopLimit' | 'Market';
 TradeAction: 'Buy' | 'Sell';
 
 // Definitions for STRING, VALUE, INT, FLOAT, and BOOL
-STRING: /[a-zA-Z0-9_]+/;
+STRING: /"[^"]*"/;
 VALUE: /-?\d+(\.\d+)?/;
 INT: /\d+/;
 FLOAT: /-?\d+(\.\d+)?/;

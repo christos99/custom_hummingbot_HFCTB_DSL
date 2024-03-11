@@ -1,80 +1,124 @@
+
+
 TradeParameters:
-  'DirectionalParams:' directionalParams*=DirectionalParameters* 
-  'PmmParams:' pmmParams*=PmmParameters* 
-  'CustomParams:' customParams*=CustomParameter* 
+  ('directionalParams:' directionalParams=DirectionalParameters)? 
+  ('PmmParams:' pmmParams=PmmParameters)?
+  ('CustomParams:' customParams=CustomParameter)?
   ;
 
 DirectionalParameters:
-  orderAmountUsd=DirectionalOrderAmountUsd|
-  leverage=DirectionalLeverage|
-  bidSpread=DirectionalBidSpread|
-  askSpread=DirectionalAskSpread|
-  orderRefreshTime=DirectionalOrderRefreshTime|
-  trailingStopActivationDelta=DirectionalTrailingStopActivationDelta|
-  trailingStopTrailingDelta=DirectionalTrailingStopTrailingDelta|
-  priceSource=DirectionalPriceSource
-  ;
+  ("order_amount_usd:" orderAmountUsd=DirectionalOrderAmountUsd)?
+  ("leverage:" leverage=DirectionalLeverage)?
+  ("bid_spread:" bidSpread=DirectionalBidSpread)?
+  ("ask_spread:" askSpread=DirectionalAskSpread)?
+  ("order_refresh_time:" orderRefreshTime=DirectionalOrderRefreshTime)?
+  ("trailing_stop_activation_delta:" trailingStopActivationDelta=DirectionalTrailingStopActivationDelta)?
+  ("trailing_stop_trailing_delta:" trailingStopTrailingDelta=DirectionalTrailingStopTrailingDelta)?
+  ("price_source:" priceSource=DirectionalPriceSource)?;
+
 
 DirectionalOrderAmountUsd:
-  'name: "order_amount_usd"' 'value:' value=FLOAT 'description: "The amount of the order"' 'default: 0.001'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=FLOAT
+  'description:' description=STRING
+  ('default:' default=FLOAT)?;
+
 DirectionalLeverage:
-  'name: "leverage"' 'value:' value=FLOAT 'description: "Leverage of the order"' 'default: 0.001'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=FLOAT
+  'description:' description=STRING
+  ('default:' default=FLOAT)?;
+
 DirectionalBidSpread:
-  'name: "bid_spread"' 'value:' value=INT 'description: "Bid spread for the order"' 'default: 15'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=FLOAT
+  'description:' description=STRING
+  ('default:' default=FLOAT)?;
+
 DirectionalAskSpread:
-  'name: "ask_spread"' 'value:' value=INT 'description: "Ask spread for the order"' 'default: 0'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=FLOAT
+  'description:' description=STRING
+  ('default:' default=FLOAT)?;
+
 DirectionalOrderRefreshTime:
-  'name: "order_refresh_time"' 'value:' value=FLOAT 'description: "Order refresh time"' 'default: 0.01'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=FLOAT
+  'description:' description=STRING
+  ('default:' default=FLOAT)?;
+
 DirectionalTrailingStopActivationDelta:
-  'name: "trailing_stop_activation_delta"' 'value:' value=INT 'description: "Activation delta for trailing stop"' 'default: 0'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=INT
+  'description:' description=STRING
+  ('default:' default=INT)?;
+
 DirectionalTrailingStopTrailingDelta:
-  'name: "trailing_stop_trailing_delta"' 'value:' value=INT 'description: "Trailing delta for trailing stop"' 'default: 0'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=INT
+  'description:' description=STRING
+  ('default:' default=INT)?;
+
 DirectionalPriceSource:
-  'name: "price_source"' 'value:' value=STRING 'description: "Source of price data for orders"' 'default: "MidPrice"'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=STRING
+  'description:' description=STRING
+  ('default:' default=STRING)?;
+
 
 PmmParameters:
-  bidSpread=PmmBidSpread |
-  askSpread=PmmAskSpread |
-  orderRefreshTime=PmmOrderRefreshTime |
-  createTimestamp=PmmCreateTimestamp |
-  orderAmount=PmmOrderAmount |
-  priceSource=PmmPriceSource;
+  ("bid_spread:" bidSpread=PmmBidSpread)?
+  ("ask_spread:" askSpread=PmmAskSpread)?
+  ("order_refresh_time:" orderRefreshTime=PmmOrderRefreshTime)?
+  ("create_timestamp:" createTimestamp=PmmCreateTimestamp)?
+  ("order_amount:" orderAmount=PmmOrderAmount)?
+  ("price_source:" priceSource=PmmPriceSource)?;
+
 
 
 PmmBidSpread:
-  'name: "bid_spread"' 'value:' value=FLOAT 'description: "Bid spread for the order"' 'default: 0.001'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=FLOAT
+  ('description:' description=STRING)?
+  ('default:' default=FLOAT)?;
+
 PmmAskSpread:
-  'name: "ask_spread"' 'value:' value=FLOAT 'description: "Ask spread for the order"' 'default: 0.001'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=FLOAT
+  ('description:' description=STRING)?
+  ('default:' default=FLOAT)?;
+
 PmmOrderRefreshTime:
-  'name: "order_refresh_time"' 'value:' value=INT 'description: "Time in seconds to refresh orders"' 'default: 15'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=INT
+  ('description:' description=STRING)?
+  ('default:' default=INT)?;
+
 PmmCreateTimestamp:
-  'name: "create_timestamp"' 'value:' value=INT 'description: "Initial timestamp for order creation"' 'default: 0'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=INT
+  ('description:' description=STRING)?
+  ('default:' default=INT)?;
+
 PmmOrderAmount:
-  'name: "order_amount"' 'value:' value=FLOAT 'description: "The amount of the order"' 'default: 0.01'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=FLOAT
+  ('description:' description=STRING)?
+  ('default:' default=FLOAT)?;
+
 PmmPriceSource:
-  'name: "price_source"' 'value:' value=STRING 'description: "Source of price data for orders"' 'default: "MidPrice"'
-  ;
+  ('name:' name=STRING)?
+  'value:' value=STRING
+  ('description:' description=STRING)?
+  ('default:' default=STRING)?;
+
 
 CustomParameter:
   'name:' name=STRING 
   'value:' value=FLOAT
-  'description:' description=STRING;
+  ('description:' description=STRING)?;
 
 // Definitions for STRING, VALUE, INT, FLOAT, and BOOL
-STRING: /[a-zA-Z0-9_]+/;
 INT: /\d+/;
 FLOAT: /-?\d+(\.\d+)?/;
 BOOL: /true|false/;

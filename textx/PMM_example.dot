@@ -1,0 +1,33 @@
+
+    digraph textX {
+        graph [rankdir=LR, splines=ortho];
+        node [shape=box, style=filled, fillcolor=white];
+        edge [minlen=1];
+        nodesep = 0.3;
+
+
+4353084048 -> 4352880208 [label="strategyInfo" arrowtail=diamond dir=both]
+4352880208[label="{SimplePMM:StrategyInfo|+author:str=''\l+description:str=''\l+type:str='PMM'\l+version:float=1.0\l+labels:list=['PMM']\l}"]
+4353084048 -> 4345997968 [label="marketConfig" arrowtail=diamond dir=both]
+4345997968[label="{:MarketConfig|+exchangeName:str='kucoin_paper_trade'\l+tradingPair:str='ETH-USDT'\l+apiKey:int=123456\l+apiSecret:str='your_api_secret'\l}"]
+4353084048 -> 4353084752 [label="tradeParameters:0" arrowtail=diamond dir=both]
+4353084752 -> 4353086992 [label="pmmParams" arrowtail=diamond dir=both]
+4353086992 -> 4353191120 [label="bidSpread" arrowtail=diamond dir=both]
+4353191120[label="{:PmmBidSpread|+value:float=0.001\l+description:str='The percentage sprea...'\l+default:float=0.001\l}"]
+4353086992 -> 4353191248 [label="askSpread" arrowtail=diamond dir=both]
+4353191248[label="{:PmmAskSpread|+value:float=0.001\l+description:str='The percentage sprea...'\l+default:float=0.001\l}"]
+4353086992 -> 4352527312 [label="orderRefreshTime" arrowtail=diamond dir=both]
+4352527312[label="{:PmmOrderRefreshTime|+value:int=15\l+description:str='Time in seconds afte...'\l+default:int=15\l}"]
+4353086992 -> 4337147664 [label="createTimestamp" arrowtail=diamond dir=both]
+4337147664[label="{:PmmCreateTimestamp|+value:int=0\l+description:str='Initial timestamp fo...'\l+default:int=0\l}"]
+4353086992 -> 4342170576 [label="orderAmount" arrowtail=diamond dir=both]
+4342170576[label="{:PmmOrderAmount|+value:float=0.01\l+description:str='The amount of the as...'\l+default:float=0.01\l}"]
+4353086992 -> 4353180816 [label="priceSource" arrowtail=diamond dir=both]
+4353180816[label="{:PmmPriceSource|+value:str='MidPrice'\l+description:str='The price source use...'\l+default:str='MidPrice'\l}"]
+4353086992[label="{:PmmParameters|}"]
+4353084752[label="{:TradeParameters|}"]
+4353084048 -> 4353091216 [label="candles:0" arrowtail=diamond dir=both]
+4353091216[label="{:Candle|+connector:str='kucoin_paper_trade'\l+tradingPair:str='ETH-USDT'\l+interval:str='1m'\l+maxRecords:int=100\l}"]
+4353084048[label="{:Strategy|indicator:list=[]\lsignalConditions:list=[]\lorders:list=[]\l}"]
+
+}
