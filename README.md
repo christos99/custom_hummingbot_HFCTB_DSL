@@ -1,4 +1,4 @@
-# Custom Hummingbot Strategy Generator
+# HFCTB - DSL
 
 ## Overview
 This tool generates custom trading strategies for Hummingbot by transforming domain-specific language (DSL) specifications into executable Python code. It uses a TextX metamodel to parse `.strategy` files and then renders these into Python scripts through Jinja2 templates.
