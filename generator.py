@@ -4,13 +4,13 @@ from textx import metamodel_from_file
 
 try:
     # Define the path to your TextX grammar file
-    grammar_file_path = '/path/to/your/grammar.tx'
+    grammar_file_path = '/Users/christos/custom_hummingbot_DSL/textx/strategy.tx'
 
     # Load TextX grammar and create a metamodel
     metamodel = metamodel_from_file(grammar_file_path)
 
     # Load TextX file
-    textx_file_path = '/Users/christos/custom_hummingbot_DSL/textx_files/dynamic_indicator.textx'
+    textx_file_path = '/Users/christos/custom_hummingbot_DSL/textx/PMM_example.strategy'
     with open(textx_file_path, 'r') as file:
         model = metamodel.model_from_str(file.read())
 
