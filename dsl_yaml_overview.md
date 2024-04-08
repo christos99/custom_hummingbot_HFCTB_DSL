@@ -1,57 +1,45 @@
-# Project Overview and Guidance
+# Custom Hummingbot Strategy Generator
 
-## Steps Taken
+## Overview
+This tool generates custom trading strategies for Hummingbot by transforming domain-specific language (DSL) specifications into executable Python code. It uses a TextX metamodel to parse `.strategy` files and then renders these into Python scripts through Jinja2 templates.
 
-### 1. Parsing and Validating Strategy (`validate.py`)
-- **Purpose:** To parse and validate a trading strategy defined in a YAML file.
-- **Key Components:**
-  - Loading and parsing YAML data.
-  - Validating the strategy's structure and content.
+## Prerequisites
+- Python 3.6 or higher
+- TextX
+- Jinja2
 
-### 2. Generating Executable Scripts (`generator.py`)
-- **Purpose:** To generate executable trading strategy scripts based on the validated YAML data.
-- **Key Components:**
-  - Using Jinja2 for template processing.
-  - Filling in templates with strategy data to generate runnable scripts.
+You can install the required Python packages using:
 
-### 3. Template Creation
-- **Description:** Setting up a `templates/` directory to store Jinja2 templates for the final Python scripts.
+```bash
+pip install textx jinja2
+```
 
-## Suggestions and Alternatives
+## Project Structure
 
-### 1. Testing and Robustness
-- **Unit Testing:** Implement unit tests for each component.
-- **Error Handling:** Enhance error handling in scripts.
+- `/textx/strategy.tx`: This file defines the grammar of the custom DSL used for defining trading strategies.
+- `/textx_files/*.strategy`: These are the strategy specification files written according to the custom DSL grammar.
+- `/templates/base_template.j2`: A Jinja2 template that defines the structure of the final Python script.
+- `/output_strategies/`: The directory where the generated Python scripts will be saved.
 
-### 2. Scalability and Flexibility
-- **Modular Design:** Structure your code in a modular fashion for easier extension and modification.
-- **Extending DSL:** Ensure your parser and validator can adapt to new elements or rules.
+## Usage
 
-### 3. Security and Execution Safety
-- **Script Security:** Be cautious with dynamically generated scripts.
-- **Execution Environment:** Ensure a secure environment for script execution.
+1. Define your strategy in a `.strategy` file using the DSL defined in `strategy.tx`.
+2. Place your `.strategy` file in the `/textx_files/` directory.
+3. Ensure the Jinja2 template in `/templates/` is set up to correctly format the Python script based on the DSL model.
+4. Run the script to generate the Python trading strategy:
+   ```python
+   python generate_strategy.py
+   ```
 
-### 4. Documentation and Maintenance
-- **Code Documentation:** Document your code and its architecture thoroughly.
-- **User Documentation:** Create clear documentation for end-users.
+5. The script will parse the `.strategy` file, render the template, and save the resulting Python file in `/output_strategies/`.
 
-### 5. Performance Considerations
-- Consider the performance implications as your system scales.
+## Error Handling
 
-## Warnings
+If there are errors during the generation process, the script will output an error message detailing what went wrong. Ensure that the `.strategy` file matches the grammar specified in `strategy.tx` and that the Jinja2 template is correctly set up to handle the model.
 
-### 1. Data Validation
-- Ensure comprehensive validation logic in `validator.py`.
+## Customization
 
-### 2. Dependency Management
-- Be mindful of external dependencies and keep them updated.
+To customize the generation process, you can modify the `strategy.tx` grammar file to fit your DSL needs, or update the Jinja2 template to change the output Python script's structure.
+```
 
-### 3. YAML File Security
-- Always use `yaml.safe_load()` to prevent arbitrary code execution.
-
-### 4. Template Security
-- Ensure that data injected into templates is sanitized and safe.
-
-## Final Thoughts
-
-Your project is a sophisticated blend of YAML parsing, DSL interpretation, and dynamic script generation. It offers flexibility and customization through YAML configurations. However, ensure security, robustness, and maintainability. Regularly review and test your code, monitor dependencies, and consider scalability and security implications as your project grows.
+This README provides a comprehensive guide on the usage and structure of your project, which should be helpful for both users and developers.
