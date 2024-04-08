@@ -1,27 +1,45 @@
-# Generator.py - Generator Script 
+# Custom Hummingbot Strategy Generator
 
 ## Overview
-The `generator.py` script is a fundamental component of the DSL (Domain-Specific Language) pipeline for Hummingbot strategies. Its primary purpose is to automate the process of generating executable trading strategy scripts from YAML configuration files.
+This tool generates custom trading strategies for Hummingbot by transforming domain-specific language (DSL) specifications into executable Python code. It uses a TextX metamodel to parse `.strategy` files and then renders these into Python scripts through Jinja2 templates.
 
-## Functionality
-1. **Validation**: The script initiates the process by validating the YAML strategy configuration file. This is accomplished by calling the `validate_and_save_strategy` function from `validator.py`. If the strategy fails validation, the script aborts, ensuring that only valid strategies are processed.
+## Prerequisites
+- Python 3.6 or higher
+- TextX
+- Jinja2
 
-2. **Loading Strategy Data**: After successful validation, the script proceeds to read the strategy data from the YAML file. This includes various strategy parameters, market settings, and other pertinent information.
-
-3. **Template Rendering**: To dynamically generate a trading strategy script based on the loaded strategy data, the script employs Jinja2 templating. It populates a predefined template (`strategy_template.j2`) with the specific details of the strategy.
-
-4. **Output**: The final rendered script is both displayed in the console and saved to a file. The filename is derived from the original YAML file but is appended with `_script.py` to indicate its executable nature.
-
-5. **Flexibility**: This approach offers a high degree of flexibility and customization in strategy creation. Any changes to the strategy can be made by editing the YAML configuration file, eliminating the need to directly modify complex Python code.
-
-## Usage
-Run the script by specifying the path to the YAML strategy file:
+You can install the required Python packages using:
 
 ```bash
-python generator.py /path/to/strategy.yaml
+pip install textx jinja2
 ```
 
-## Output
+## Project Structure
 
-The generated script is saved in the `output_strategies` directory with a filename corresponding to the original YAML file. This naming convention ensures easy tracking and management of different strategies.
+- `/textx/strategy.tx`: This file defines the grammar of the custom DSL used for defining trading strategies.
+- `/textx_files/*.strategy`: These are the strategy specification files written according to the custom DSL grammar.
+- `/templates/base_template.j2`: A Jinja2 template that defines the structure of the final Python script.
+- `/output_strategies/`: The directory where the generated Python scripts will be saved.
 
+## Usage
+
+1. Define your strategy in a `.strategy` file using the DSL defined in `strategy.tx`.
+2. Place your `.strategy` file in the `/textx_files/` directory.
+3. Ensure the Jinja2 template in `/templates/` is set up to correctly format the Python script based on the DSL model.
+4. Run the script to generate the Python trading strategy:
+   ```python
+   python generate_strategy.py
+   ```
+
+5. The script will parse the `.strategy` file, render the template, and save the resulting Python file in `/output_strategies/`.
+
+## Error Handling
+
+If there are errors during the generation process, the script will output an error message detailing what went wrong. Ensure that the `.strategy` file matches the grammar specified in `strategy.tx` and that the Jinja2 template is correctly set up to handle the model.
+
+## Customization
+
+To customize the generation process, you can modify the `strategy.tx` grammar file to fit your DSL needs, or update the Jinja2 template to change the output Python script's structure.
+```
+
+This README provides a comprehensive guide on the usage and structure of your project, which should be helpful for both users and developers.
